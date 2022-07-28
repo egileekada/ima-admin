@@ -1,4 +1,4 @@
-import { ContactsSvg, DashboardSVG } from "../assets";
+import { ContactsSvg, DashboardSVG, ReportsSvg } from "../assets";
 
 export const pages = [
   {
@@ -22,6 +22,10 @@ export const pages = [
   { title: "Messages" },
   { title: "Bookings" },
   { title: "Media" },
-  { title: "Reports" },
+  {
+    title: "Reports",
+    ActiveImage: <ReportsSvg fill="#0C0507" />,
+    InActiveImage: <ReportsSvg />
+  },
   { title: "Settings" }
 ];
