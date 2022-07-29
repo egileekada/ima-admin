@@ -5,7 +5,7 @@ export const Circle = function ({
   style,
   size = 80
 }: {
-  style: object;
+  style?: object;
   [x: string]: any;
 }) {
   return (

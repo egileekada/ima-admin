@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -62,7 +64,12 @@ const Home: NextPage = () => {
               Login
             </h1>
           </div>
-          <form style={{ marginBottom: 40 }}>
+          <form
+            style={{ marginBottom: 40 }}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div style={{ marginBottom: 48 }}>
               <input
                 type="email"
@@ -91,6 +98,10 @@ const Home: NextPage = () => {
               />
             </div>
             <button
+              onAbort={(e) => {
+                e.preventDefault();
+                router.push("/profile");
+              }}
               style={{
                 padding: "14px 21px",
                 width: "100%",
