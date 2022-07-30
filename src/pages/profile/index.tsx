@@ -1,12 +1,13 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Circle } from "../../components";
 import { Layout } from "../../layout";
 import styles from "./index.module.css";
 
 const Profile: NextPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   //@ts-ignore
   return (
     <Layout>
@@ -17,14 +18,7 @@ const Profile: NextPage = () => {
           flex: 1
         }}
       >
-        <div
-          style={{
-            backgroundColor: "#fff",
-            height: "100px",
-            padding: "20px 40px"
-          }}
-        ></div>
-        <div style={{ padding: "25px 2vw" }} className="flex">
+        <div className="flex">
           <div style={{ flex: 1 }}>
             <div className="flex" style={{ flex: 1 }}>
               <ProfileCard />
@@ -134,9 +128,15 @@ const Profile: NextPage = () => {
               </div>
 
               <div style={{ padding: 20 }}>
-                <h4 className="f14">Selfie Photo</h4>
+                <h4 className="f14" onClick={() => setIsOpen(!isOpen)}>
+                  Selfie Photo
+                </h4>
                 <div
-                  style={{ height: 129, overflow: "hidden", marginTop: 13 }}
+                  style={{
+                    height: true ? 175 : 0,
+                    overflow: "hidden",
+                    marginTop: 13
+                  }}
                   className="br-10"
                 >
                   <Image
@@ -151,7 +151,7 @@ const Profile: NextPage = () => {
               <div style={{ padding: 20 }}>
                 <h4 className="f14">Selfie Video</h4>
                 <div
-                  style={{ height: 129, overflow: "hidden", marginTop: 13 }}
+                  style={{ height: 175, overflow: "hidden", marginTop: 13 }}
                   className="br-10"
                 >
                   <Image

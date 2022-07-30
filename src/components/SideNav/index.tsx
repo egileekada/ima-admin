@@ -40,7 +40,7 @@ export function SideNav() {
       <ul className={styles.navItemWrapper}>
         {pages.map((tab, idx) => (
           <li style={{}} key={idx}>
-            <Link href="#">
+            <Link href={tab.link || "#"}>
               <a
                 className={`${styles.navItem} flex align-center`}
                 onClick={() => setActiveTab(idx)}

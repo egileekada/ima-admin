@@ -21,6 +21,9 @@ a {
   margin: 0;
   transition-duration: 0.6s;
 }
+.pointer {
+  cursor: pointer;
+}
 
 .fw700 {
   font-weight: 700;
