@@ -1,3 +1,2 @@
 export * from "./helpers/Circle";
-export * from "./SideNav";
-export * from "./ProfileCard";
+export * from "./DashboardSideNav/index"

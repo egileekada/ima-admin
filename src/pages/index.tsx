@@ -86,7 +86,7 @@ const Home: NextPage = () => {
 
             <div style={{ marginBottom: 40 }}>
               <input
-                type="email"
+                type="password"
                 placeholder="Password"
                 style={{
                   width: "100%",
