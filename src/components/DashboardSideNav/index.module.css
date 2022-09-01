@@ -61,6 +61,7 @@ color: #fff;
 }
 
 .dashboardList{
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: 20px;
@@ -70,6 +71,23 @@ color: #fff;
     cursor: pointer;
     width: 100%;
 }
+
+.curve{
+    background-color: #fff;
+    position: absolute;
+    top: -52%;
+    right: 0;
+}
+
+.curve2{
+    background-color: #fff;
+    position: absolute;
+    bottom: -53%;
+    right: -0.3%;
+    z-index: 10;
+    transform: rotateX(180deg);
+}
+
 
 .dashboardList > p{
     font-family: Poppins;

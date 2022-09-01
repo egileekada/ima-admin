@@ -33,8 +33,10 @@ const color: object = {
                 <ul className={styles.dashboardUL}>
                     <li className={styles.dashboardList}
                     style={page==='dashboard'?backgroundStyle: {}} onClick={() => setPage('dashboard')}>
+                        {page==='dashboard'&& <div className={styles.curve}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
                         <div><Image src='/images/dashboard.png' width={15} height={15} alt='icon'/></div>
                         <p style={page==='dashboard'?color:{}}>Dashboard</p>
+                        {page==='dashboard'&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
                     </li>
 
                     <li className={styles.dashboardList}
