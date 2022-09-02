@@ -1,6 +1,7 @@
 import React from "react"
 import { NextPage } from "next"
-import { DashboardSideNav } from "../../components"
+import { DashboardSideNav, FileCount } from "../../components"
+import { DashboardHome } from "../../components/DashboardHome"
 
 
 
@@ -8,7 +9,7 @@ const Dashboard: NextPage = () => {
     return (
         <div>
             <DashboardSideNav>
-                <h1>Welcome</h1>
+                <DashboardHome />
             </DashboardSideNav>
         </div>
     )

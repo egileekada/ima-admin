@@ -1,0 +1,41 @@
+.mainWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 10px;
+    padding-inline: 24px 14px;
+    background: #F7F9FC;
+border-radius: 8px;
+    
+}
+
+.mainWrapper p{
+    font-family: Montserrat;
+font-size: 16px;
+font-weight: 600;
+}
+
+.leftContainer{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.divLine{
+    height: 1px;
+    background-color: #F0F0F0;
+    margin-block: 15px 8px;
+    margin-right: 10px;
+}
+
+.action1{
+    font-size: 14px;
+    font-weight: 400;
+    color: #0984D6;
+}
+
+.action2{
+    font-size: 14px;
+    font-weight: 400;
+    color: #EB3223;
+}

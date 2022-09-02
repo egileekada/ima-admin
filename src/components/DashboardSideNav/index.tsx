@@ -133,7 +133,7 @@ const color: object = {
                         {page==='customer'&& <div className={styles.curve}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
                         <div><Image src='/images/dashboard.png' width={15} height={15} alt='icon'/></div>
                         <p style={page==='customer'?color:{}}>Customer Care</p>
-                        {page==='customer'&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
+                        {/* {page==='customer'&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>} */}
                     </li>
                 </ul>
             </div>
