@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+.mainWrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.white{
+    padding: 16px 21px;
+    background: #FFFFFF;
+    border-radius: 8px;
+}
+
+.white p{
+font-family: Inter;
+font-size: 14px;
+font-weight: 400;
+color: #5B5F7B;
+}
+
+.whiteTop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.whiteMiddle{
+    margin-top: 44px;
+    text-align: center;
+}
+
+.whiteBottom{
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    column-gap: 26px;
+}
+
+.whiteBottom > button:first-child{
+    font-family: Inter;
+font-size: 13px;
+font-weight: 500;
+padding: 9px 32px;
+border: 1px solid #000000;
+border-radius: 4px;
+color: #000000;
+}
+
+.whiteBottom > button:last-child{
+    font-family: Inter;
+font-size: 13px;
+font-weight: 500;
+padding: 9px 32px;
+border-radius: 4px;
+color: #fff;
+background-color: #0984D6;
+}

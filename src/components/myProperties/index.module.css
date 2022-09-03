@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.propertyList{
+    margin-top: 23px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding-inline: 11px;
+    column-gap: 10px;
+}
+
+
+.propertyList p{
+    font-family: Montserrat;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    color: #2E3A59;
+}
+
+.propertyList li{
+    font-family: Inter;
+font-size: 12px;
+font-weight: 700;
+text-align: center;
+color: #2E3A59;
+}
+
+.propertyList li:first-child{
+    display: flex;
+    column-gap: 22px;
+}
+
+.propertyList li:last-child{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.listButton1{
+padding: 7px;
+background: rgba(255, 51, 63, 0.1);
+border-radius: 9px;
+color: #EB3223;
+}
+
+.listButton2{
+    padding: 7px;
+    background: rgba(9, 132, 214, 0.1);
+    border-radius: 9px;
+    color: #0984D6;
+    }
+

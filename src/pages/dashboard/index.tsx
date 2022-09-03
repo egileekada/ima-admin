@@ -1,19 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import { NextPage } from "next"
 import { DashboardSideNav, FileCount } from "../../components"
 import { DashboardHome } from "../../components/DashboardHome"
-import DashboardListing from "../../components/DashboardListing"
-import Navbar from "../../components/Navbar"
 
 
 
 const Dashboard: NextPage = () => {
+    const [page, setPage] = useState('dashboard')
+
     return (
         <div>
-            <DashboardSideNav> 
-                <Navbar />
-                {/* <DashboardHome /> */}
-                <DashboardListing />
+            <DashboardSideNav page={page} setPage={setPage}>
+        {page==='dashboard' && <DashboardHome />}
+        {page === 'property' && <Property />}
             </DashboardSideNav>
         </div>
     )
