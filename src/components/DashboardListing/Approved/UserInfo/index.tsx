@@ -43,9 +43,9 @@ export function UserInfo({img, property, price, listby, type, date, location, st
                 </div>
             </li> 
             <li>
-                <div className=" flex w-full justify-between " > 
+                <div className=" flex w-full justify-start " > 
                     <button className={styles.viewButton}>View</button>
-                    <button> 
+                    <button className="ml-5" > 
                         <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
                     </button>
                 </div>

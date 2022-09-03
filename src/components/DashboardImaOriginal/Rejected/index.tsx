@@ -1,7 +1,7 @@
 import React from 'react'
 import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 export default function NewListing(){
     return(
@@ -14,8 +14,12 @@ export default function NewListing(){
                     </li>
                     
                     <li>
-                        <p>Listed By</p>
+                        <p>Account</p>
                     </li>
+                    
+                    <li>
+                        <p>Agent</p>
+                    </li>  
 
                     <li>
                         <p>Location</p>
@@ -37,24 +41,17 @@ export default function NewListing(){
                     </li>
                 </ul>
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
-
+                   account="Ima Original" agent="Prince David"  type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
+                    status='Verified Agent'/> 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                listby="Ima Original" type="Rent" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
-
+                    account="Ima Original" agent="Prince David"  type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
+                    status='Verified Agent'/> 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
-
+                    account="Ima Original" agent="Prince David"  type="Rent" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
+                    status='Verified Agent'/> 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
-
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                listby="Ima Original" type="Rent" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                    account="Ima Original" agent="Prince David"  type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
+                    status='Verified Agent'/> 
             </div>
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>

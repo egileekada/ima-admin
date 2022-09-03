@@ -5,6 +5,7 @@ import { DashboardHome } from "../../components/DashboardHome"
 import { Property } from "../../components/Property"
 import DashboardListing from "../../components/DashboardListing"
 import Navbar from "../../components/Navbar"
+import DashboardImaOriginal from "../../components/DashboardImaOriginal"
 
 
 
@@ -18,6 +19,7 @@ const Dashboard: NextPage = () => {
                 {page==='dashboard' && <DashboardHome />}
                 {page === 'property' && <Property />}
                 {page === 'listing' && <DashboardListing />}
+                {page === 'original' && <DashboardImaOriginal />}
             </DashboardSideNav>
         </div>
     )
