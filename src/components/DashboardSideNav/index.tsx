@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./index.module.css"
 
 
-export function DashboardSideNav({ children }: { [x: string]: any }){
+export function DashboardSideNav({ children, page, setPage }: { [x: string]: any, page:string, setPage:any }){
 
-    const [page, setPage] = useState('dashboard')
 
 const backgroundStyle: object = {
 backgroundColor: '#fff',
