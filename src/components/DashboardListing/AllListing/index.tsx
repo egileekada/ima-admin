@@ -38,23 +38,23 @@ export default function NewListing(){
                 </ul>
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
                 listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                status=''/>
 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
                 listby="Ima Original" type="Rent" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                status='approve'/>
 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
                 listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                status=''/>
 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
                 listby="Ima Original" type="Buy" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                status='reject'/>
 
                 <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
                 listby="Ima Original" type="Rent" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Verified Agent'/>
+                status=''/>
             </div>
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>

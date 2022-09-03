@@ -5,6 +5,7 @@ import { UserInfo } from "./NewListing/UserInfo"
 import NewListing from './NewListing'
 import Approved from './Approved'
 import Rejected from './Rejected'
+import AllListing from './AllListing'
 
 export default function Index(){
 
@@ -42,6 +43,9 @@ export default function Index(){
             )}
             {tab === 2 && (
                 <Rejected />
+            )}
+            {tab === 3 && (
+                <AllListing />
             )}
         </div>
     )

@@ -35,7 +35,7 @@ export function UserInfo({img, property, price, listby, type, date, location, st
                 <p style={{fontSize:'12px'}}>{date}</p>
             </li>
 
-            <li  >
+            <li>
                 {/* <p className={status==='Verified Agent' ? styles.verified1 : styles.verified2}>{status}</p> */}
                 <div className=" w-full flex " >
                 <button style={{border: "1px solid #02B449"}} className=" text-[#02B449] p-1 border-[#02B449] w-16 text-sm rounded-2xl " >Approve</button>

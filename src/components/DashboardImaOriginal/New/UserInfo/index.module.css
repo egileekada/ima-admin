@@ -8,7 +8,7 @@
 
 .userData{
     display: grid;
-    grid-template-columns: 1.5fr 0.7fr 1fr 0.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 0.7fr 0.7fr 0.5fr 1fr 1fr 1fr 0.7fr;
     padding-inline: 11px;
     column-gap: 10px;
     margin-top: 15px;
@@ -29,7 +29,7 @@ border-radius: 9px; */
 color: #0984D6;
 font-family: Poppins;
 font-size: 12px;
-/* margin-left: 40px; */
+margin-left: 40px;
 font-weight: 500;
 }
 

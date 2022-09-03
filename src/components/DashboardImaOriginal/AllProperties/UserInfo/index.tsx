@@ -3,8 +3,8 @@ import Image from 'next/image'
 import styles from './index.module.css'
 
 
-export function UserInfo({img, property, price, listby, type, date, location, status}:
-    {img:string, property:string, price:string, listby:string, type:string, date:string, location:string, status:string}){
+export function UserInfo({img, property, price, account, agent, loan, type, date, location, status}:
+    {img:string, property:string, price:string, account:string, agent:string, loan:string, type:string, date:string, location:string, status:string}){
     return(
         <ul className={styles.userData}>
 
@@ -20,7 +20,11 @@ export function UserInfo({img, property, price, listby, type, date, location, st
             </li>
 
             <li>
-                <p>{listby}</p>
+                <p style={{fontSize:'12px'}}>{account}</p>
+            </li>
+
+            <li>
+                <p style={{fontSize:'12px'}}>{agent}</p>
             </li>
 
             <li>
@@ -35,24 +39,16 @@ export function UserInfo({img, property, price, listby, type, date, location, st
                 <p style={{fontSize:'12px'}}>{date}</p>
             </li>
 
-            <li  >
-                {/* <p className={status==='Verified Agent' ? styles.verified1 : styles.verified2}>{status}</p> */}
-                <div className=" w-full flex items-center " >
-                <p style={{border: "1px solid #C4CDD5"}} className=" text-sm  rounded-2xl text-[#C4CDD5] p-1 border-[#EB3223]  w-16 " >Approved</p>
-                <p className=" text-[#EB3223] items-center flex text-sm ml-4 " >Rejected
-                
-                    </p><button className=" ml-2 " > 
-                        <Image src="/images/file.png" width={15} height={15} alt='avatar'/>
-                    </button>
-                </div>
-            </li> 
             <li>
-                <div className=" flex w-full justify-start " > 
-                    <button className={styles.viewButton}>View</button>
-                    <button className="ml-5" > 
-                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                    </button>
-                </div>
+                <p style={{fontSize:'12px'}} className='mx-auto' >{loan === "" ? 'Nill' : <p className=" underline text-[#0984D6] text-center " style={{fontSize:'12px'}} >{loan}</p>}</p>
+            </li> 
+
+            <li>
+                <p style={{fontSize:'12px'}}  className='mx-auto' >{status === "Active" ? <>{status}</>: <p className=" underline text-[#0984D6] " style={{fontSize:'12px'}} >{status}</p>  }</p>
+            </li> 
+
+            <li  className=' flex items-center justify-center ' >
+                <button className={styles.viewButton}>View</button>
             </li>
         </ul>
     )
