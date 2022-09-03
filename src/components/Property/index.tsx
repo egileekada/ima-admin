@@ -1,0 +1,141 @@
+import React, { useState } from "react";
+import Image from 'next/image'
+import styles from './index.module.css'
+import { MyProperties } from "../myProperties";
+import { DeleteProperty } from "../Modals/deleteProperty";
+
+
+export function Property(){
+
+const [position, setPosition] = useState('all')
+const [showDelete, setShowDelete] = useState(false)
+
+const handleDelete = () => {
+    setShowDelete(prevState => !prevState)
+}
+
+
+
+const myStyle: object = {
+    color: '#0984D6',
+    borderBottom: '1.5px solid #0984D6'
+}
+
+    return(
+        <div>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                <div className={styles.firstWrapper}>
+                    <div><Image src='/images/Icon.png' width={18} height={12} alt='hamburger' /></div>
+                    <p style={{marginLeft:27}}>Good morning, Maharram</p>
+                    <div><Image src='/images/wave.png' height={24} width={24} alt='wave' /></div>
+                    <p className={styles.small} style={{marginLeft:13}}>you have <span style={{color:'#3366FF'}}>1 new message</span></p>
+                </div>
+                <div><Image src='/images/openFile.png' width={48} height={46}/></div>
+            </div>
+
+            <div style={{marginTop:'48px'}} className={styles.myProperty}>
+                <p>Property</p>
+                <input type='text' placeholder='Search'></input>
+            </div>
+
+            <div className={styles.differentContainers}>
+                <p style={position==='all' ? myStyle: {} } onClick={() => setPosition('all')}>All Properties (5)</p>
+                <p style={position==='rent' ? myStyle: {} } onClick={() => setPosition('rent')}>Rent (70)</p>
+                <p style={position==='buy' ? myStyle: {} } onClick={() => setPosition('buy')}>Buy (10)</p>
+            </div>
+
+            <ul className={styles.propertyList}>
+                <li>
+                    <input type='checkbox'></input>
+                    <p>Property</p>
+                </li>
+
+                <li>
+                    <p>Agent</p>
+                </li>
+
+                <li>
+                    <p>Location</p>
+                </li>
+
+                <li>
+                    <p>Type</p>
+                </li>
+
+                <li>
+                    <p>Date</p>
+                </li>
+
+                <li>
+                    <p>Loan</p>
+                </li>
+
+                <li>
+                    <p>Status</p>
+                </li>
+
+                <li>
+                    <p>Action</p>
+                </li>
+            </ul>
+
+            {position==='all' && <div className={styles.myPropsHolder}>
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Buy"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Buy"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+            </div>}
+
+            {position ==='rent' && <div className={styles.myPropsHolder}>
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+                </div>}
+
+
+                {position ==='buy' && <div className={styles.myPropsHolder}>
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+
+                <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
+                agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
+                date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
+                showDelete={showDelete}/>
+                </div>}
+
+        </div>
+    )
+}
