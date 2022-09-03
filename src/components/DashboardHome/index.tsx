@@ -8,13 +8,13 @@ import { UserInfo } from "../UserInfo"
 
 export function DashboardHome(){
     return(
-        <div>
-            <div className={styles.firstWrapper}>
+        <div  >
+            {/* <div className={styles.firstWrapper}>
                 <div><Image src='/images/Icon.png' width={18} height={12} alt='hamburger' /></div>
                 <p style={{marginLeft:27}}>Good morning, Maharram</p>
                 <div><Image src='/images/wave.png' height={24} width={24} alt='wave' /></div>
                 <p className={styles.small} style={{marginLeft:13}}>you have <span style={{color:'#3366FF'}}>1 new message</span></p>
-            </div>
+            </div> */}
             <div className={styles.dashboardWrapper}>
                 <div className={styles.dashboardContainer}>
                     <p>Dashboard</p>
