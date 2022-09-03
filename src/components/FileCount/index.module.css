@@ -1,0 +1,27 @@
+.fileCountWrapper{
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding-block: 20px 9px;
+    padding-inline: 10px 20px;
+    background: rgba(51, 102, 255, 0.2);
+border-radius: 8px;
+width: fit-content;
+position: relative;
+}
+
+.fileCountWrapper p{
+    font-family: Montserrat;
+font-size: 15px;
+font-weight: 700;
+color: #3366FF;
+text-align: center;
+}
+
+.arrowRight{
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+right: 9px;
+}
+
