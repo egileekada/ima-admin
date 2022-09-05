@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Image from 'next/image'
 import styles from './index.module.css'
 import { MyProperties } from "../myProperties";
-import { DeleteProperty } from "../Modals/deleteProperty";
 
 
-export function Property(){
+export function Property({setPage}:{setPage:any}){
 
 const [position, setPosition] = useState('all')
 const [showDelete, setShowDelete] = useState(false)
@@ -23,7 +22,6 @@ const myStyle: object = {
 
     return(
         <div>
-
             <div style={{marginTop:'48px'}} className={styles.myProperty}>
                 <p>Property</p>
                 <input type='text' placeholder='Search'></input>
@@ -74,39 +72,39 @@ const myStyle: object = {
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Buy"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Buy"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='false' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
             </div>}
 
             {position ==='rent' && <div className={styles.myPropsHolder}>
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
                 </div>}
 
 
@@ -114,17 +112,17 @@ const myStyle: object = {
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
 
                 <MyProperties img='/images/recentImage1.png' description="1 bedroom" price="350,000" 
                 agent="Prince David" location="East-West Road, Port Harcourt, Rivers State" type="Rent"
                 date="27/08/2022 2:30pm" loan="Nil" status="active" remove='true' handleDelete={handleDelete}
-                showDelete={showDelete}/>
+                showDelete={showDelete} setPage={setPage}/>
                 </div>}
 
         </div>

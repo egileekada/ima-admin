@@ -39,11 +39,11 @@ const color: object = {
                     </li>
 
                     <li className={styles.dashboardList}
-                    style={page==='property'?backgroundStyle:{}} onClick={() => setPage('property')}>
-                    {page==='property'&& <div className={styles.curve}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
+                    style={(page==='property' || page==='detail')?backgroundStyle:{}} onClick={() => setPage('property')}>
+                    {(page==='property' || page==='detail')&& <div className={styles.curve}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
                         <div><Image src='/images/dashboard.png' width={15} height={15} alt='icon'/></div>
-                        <p style={page==='property'?color:{}}>Property</p>
-                        {page==='property'&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
+                        <p style={(page==='property' || page==='detail')?color:{}}>Property</p>
+                        {(page==='property' || page==='detail')&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>}
                     </li>
 
                     <li className={styles.dashboardList}

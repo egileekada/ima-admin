@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+.myProperty{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myProperty > p{
+    font-family: Montserrat;
+font-size: 20px;
+font-weight: 800;
+color: #2E3A59;
+}
+
+
+.myProperty > input{
+    font-family: Inter;
+font-size: 13px;
+font-weight: 500;
+    padding: 16px 13px;
+    border: 1px solid #E4E6EE;
+border-radius: 4px;
+}
+
+.differentContainers{
+    margin-inline: 34px;
+    background: #FFFFFF;
+border: 1px solid #D4D4D4;
+border-radius: 10px;
+margin-block: 8px 21px;
+padding: 12px 21px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.details p:first-child{
+    font-family: Inter;
+font-size: 20px;
+font-weight: 700;
+}
+
+.details p:last-child{
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0984D6; 
+}
+
+.differentContainers > p{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 500;
+color: #02B449;
+}
+
+.mainSection{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    column-gap: 22px;
+    margin-bottom: 50px;
+}
+
+
+.firstRight{
+    padding: 25px;
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    border-radius: 10px;
+}
+
+.firstRight > p{
+    margin-top: 37px;
+    font-family: Inter;
+font-size: 20px;
+font-weight: 700;
+color: #0984D6;
+}
+
+.right{
+    font-family: Inter;
+font-size: 15px;
+font-weight: 500;
+color: #6F6F6F;
+}
+
+.description{
+    margin-top: 31px;
+}
+
+.description > p:first-child{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 13px;
+}
+
+.description > p:last-child{
+    font-family: Inter;
+font-size: 15px;
+font-weight: 400;
+text-align: justify;
+}
+
+.photosWrapper{
+    padding: 31px 35px;
+    margin-top: 19px;
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    border-radius: 10px;
+}
+
+.photosWrapper >p{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+}
+
+.photosWrapper > div{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 29px;
+}
+
+.sectionLeft > div:first-child{
+    background: #0984D6;
+border-radius: 10px;
+width: 100%;
+padding-block: 6px;
+text-align: center;
+}
+
+.sectionLeft > div:first-child p{
+    font-family: Inter;
+font-size: 20px;
+font-weight: 700;
+color: #fff;
+}
+
+.left2{
+    background: #FFFFFF;
+    border: 1px solid #D4D4D4;
+    border-radius: 10px;
+    width: 100%;
+     padding-block: 30px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 15px;
+}
+
+.name{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+margin-top: 20px;
+}
+
+.number{
+    margin-block: 17px 13px;
+    font-family: Inter;
+font-size: 14px;
+font-weight: 400;
+color: #6F6F6F;
+}
+
+.email{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6F6F6F;
+    background: #FFFFFF;
+border: 1px solid #0984D6;
+border-radius: 50px;
+padding: 3px 30px;
+margin-bottom: 23px;
+}
+
+.left3{
+    background: #FFFFFF;
+border: 1px solid #D4D4D4;
+border-radius: 10px;
+margin-top: 25px;
+padding: 25px;
+min-height: 230px;
+}
+
+.left3 > p:first-child{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+}
+
+
+.left4{
+    background: #FFFFFF;
+border: 1px solid #D4D4D4;
+border-radius: 10px;
+margin-top: 25px;
+padding: 25px;
+}
+
+.left4 > p:first-child{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 700;
+margin-bottom: 24px;
+}
+
+.left4 > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 30px;
+}
+
+.left4 > div p{
+    font-family: Inter;
+font-size: 14px;
+font-weight: 400;
+color: #666666;
+}

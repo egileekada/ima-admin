@@ -3,12 +3,12 @@ import Image from 'next/image'
 import styles from './index.module.css'
 import { DeleteProperty } from "../Modals/deleteProperty";
 
-export function MyProperties({img, description, price, agent, location, type, date, loan, status, remove, handleDelete, showDelete}:
+export function MyProperties({img, description, price, agent, location, type, date, loan, status, remove, handleDelete, showDelete, setPage}:
     {img: string, description:string, price:string, agent:string, location:string, type:string,
-    date:string, loan:string, status:string, remove:string, handleDelete:any, showDelete:any}){
+    date:string, loan:string, status:string, remove:string, handleDelete:any, showDelete:any, setPage:any}){
     return(
         <ul className={styles.propertyList}>
-            <li>
+            <li onClick={() => setPage('detail')} style={{cursor:'pointer'}}>
                 <input type='checkbox'></input>
                 <div style={{display:'flex', alignItems:'center', columnGap:'8px'}}>
                     <div><Image src={img} width={48} height={48} alt='property'/></div>
