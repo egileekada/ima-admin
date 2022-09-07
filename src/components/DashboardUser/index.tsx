@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './index.module.css' 
-import NewListing from './NewListing'
-import Approved from './Approved'
-import Rejected from './Rejected'
-import AllListing from './AllListing'
+import AllUser from './AllUser'
+import Online from './Online'
+import Offline from './Offline'
+import Visitor from './Visitor'
 
 export default function Index(){
 
@@ -12,7 +12,7 @@ export default function Index(){
     return(
         <div>
             <div className=' w-full flex mt-14 '>
-                <p className={styles.MontserratExtraBold} >Listing</p>
+                <p className={styles.MontserratExtraBold} >Users</p>
                 <div className='ml-auto' style={{width: '258px'}} >
                     <select className='w-full h-11 px-4 bg-[#E4E6EE] border border-[#E4E6EE] rounded ' >
                         <option>Search</option>
@@ -21,29 +21,29 @@ export default function Index(){
             </div>
             <div className='w-full mt-6 h-fit flex pb-6' >
                 <button onClick={()=> setTab(0)} style={tab === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >New Listing (5)</p>
+                    <p className={styles.MontserratSemiBold} >All users (5)</p>
                 </button>
                 <button onClick={()=> setTab(1)} style={tab === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Approved (10)</p>
+                    <p className={styles.MontserratSemiBold} >Visitors (70)</p>
                 </button>
                 <button onClick={()=> setTab(2)} style={tab === 2 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Rejected (10)</p>
+                    <p className={styles.MontserratSemiBold} >Online (10)</p>
                 </button>
                 <button onClick={()=> setTab(3)} style={tab === 3 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >All Listing (10)</p>
+                    <p className={styles.MontserratSemiBold} >Offline (10)</p>
                 </button> 
             </div>
             {tab === 0 && (
-                <NewListing />
+                <AllUser />
             )}
             {tab === 1 && (
-                <Approved />
+                <Visitor />
             )}
             {tab === 2 && (
-                <Rejected />
+                <Online />
             )}
             {tab === 3 && (
-                <AllListing />
+                <Offline />
             )}
         </div>
     )

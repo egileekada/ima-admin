@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from './index.module.css' 
-import AllProperties from './AllProperties'
-import Approved from './Approved'
-import Rejected from './Rejected'
-import New from './New'
-import Rent from './Rent'
-import Buy from './Buy'
+// import Funding from './AllBooking'  
+// import WithdrawalRequest from './WithdrawalRequest'
+// import Withdrawal from './Withdrawal'
+// import Transaction from './Transaction'
+import AllBooking from './AllBooking'
+import NewBooking from './NewBooking'
+import Canceled from './Canceled'
+import Reschduled from './Reschduled'
 
 export default function Index(){
 
@@ -14,50 +16,38 @@ export default function Index(){
     return(
         <div>
             <div className=' w-full flex mt-14 '>
-                <p className={styles.MontserratExtraBold} >Ima Original</p>
+                <p className={styles.MontserratExtraBold} >Booking</p>
                 <div className='ml-auto' style={{width: '258px'}} >
                     <select className='w-full h-11 px-4 bg-[#E4E6EE] border border-[#E4E6EE] rounded ' >
                         <option>Search</option>
                     </select>
                 </div>
-            </div>
+            </div> 
             <div className='w-full mt-6 h-fit flex pb-6' >
                 <button onClick={()=> setTab(0)} style={tab === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >All Properties (5)</p>
+                    <p className={styles.MontserratSemiBold} >All Booking (10)</p>
                 </button>
                 <button onClick={()=> setTab(1)} style={tab === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >New (70)</p>
+                    <p className={styles.MontserratSemiBold} >New Booking</p>
                 </button>
                 <button onClick={()=> setTab(2)} style={tab === 2 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 2 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Approved (10)</p>
+                    <p className={styles.MontserratSemiBold} >Canceled</p>
                 </button>
                 <button onClick={()=> setTab(3)} style={tab === 3 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 3 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Rejected (10)</p>
-                </button> 
-                <button onClick={()=> setTab(4)} style={tab === 4 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 4 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Rent (10)</p>
-                </button> 
-                <button onClick={()=> setTab(5)} style={tab === 5 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 5 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Buy (10)</p>
+                    <p className={styles.MontserratSemiBold} >Reschduled</p>
                 </button> 
             </div>
             {tab === 0 && (
-                <AllProperties />
+                <AllBooking />
             )}
             {tab === 1 && (
-                <New />
-            )}
+                <NewBooking />
+            )} 
             {tab === 2 && (
-                <Approved />
-            )}
+                <Canceled/>
+            )} 
             {tab === 3 && (
-                <Rejected />
-            )}
-            {tab === 4 && (
-                <Rent />
-            )}
-            {tab === 5 && (
-                <Buy />
+                <Reschduled />
             )}
         </div>
     )
