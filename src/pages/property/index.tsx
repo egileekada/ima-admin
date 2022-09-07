@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
-import { DashboardHome } from "../../components/DashboardHome";
+import { Property } from "../../components/Property";
 
-const Dashboard: NextPage = () => {
-  const [page, setPage] = useState("detail");
-
-  return <DashboardHome />;
+const Index: NextPage = () => {
+  return <Property setPage={() => {}} />;
 };
 
-export default Dashboard;
+export default Index;
 
 {
   /* {page === "property" && <Property setPage={setPage} />} */
