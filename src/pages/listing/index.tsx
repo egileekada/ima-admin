@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
 import DashboardListing from "../../components/DashboardListing";
+import { Layout } from "../../layout";
 
 const Index: NextPage = () => {
-  return <DashboardListing />;
+  return (
+    <Layout>
+      <DashboardListing />;
+    </Layout>
+  );
 };
 
 export default Index;

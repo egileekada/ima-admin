@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
 import { Property } from "../../components/Property";
+import { Layout } from "../../layout";
 
 const Index: NextPage = () => {
-  return <Property setPage={() => {}} />;
+  return (
+    <Layout>
+      <Property setPage={() => {}} />;
+    </Layout>
+  );
 };
 
 export default Index;

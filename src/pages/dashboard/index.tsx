@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
 import { DashboardHome } from "../../components/DashboardHome";
+import { Layout } from "../../layout";
 
 const Dashboard: NextPage = () => {
   const [page, setPage] = useState("detail");
 
-  return <DashboardHome />;
+  return (
+    <Layout>
+      <DashboardHome />
+    </Layout>
+  );
 };
 
 export default Dashboard;

@@ -5,14 +5,7 @@ import { DashboardSideNav } from "../components";
 import Navbar from "../components/Navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <DashboardSideNav page="dashboard">
-      <>
-        <Navbar />
-        <Component {...pageProps} />
-      </>
-    </DashboardSideNav>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

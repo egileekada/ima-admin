@@ -17,8 +17,10 @@ export function DashboardSideNav({
   const color: object = {
     color: "#0984D6"
   };
-  const [page, setPage] = useState("dashboard");
   const router = useRouter();
+  console.log(router.asPath);
+  const [page, setPage] = useState(router.asPath.substr(1));
+
   useEffect(() => {
     router.push(page);
   }, [page]);
