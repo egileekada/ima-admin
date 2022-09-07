@@ -16,7 +16,7 @@ export default function Index(){
     return(
         <div>
             <div className=' w-full flex mt-14 '>
-                <p className={styles.MontserratExtraBold} >Wallet</p>
+                <p className={styles.MontserratExtraBold} >Booking</p>
                 <div className='ml-auto' style={{width: '258px'}} >
                     <select className='w-full h-11 px-4 bg-[#E4E6EE] border border-[#E4E6EE] rounded ' >
                         <option>Search</option>
