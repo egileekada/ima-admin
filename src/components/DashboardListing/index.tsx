@@ -1,7 +1,5 @@
 import React from 'react'
-import styles from './index.module.css'
-import { RecentProperty } from "../RecentProperty"
-import { UserInfo } from "./NewListing/UserInfo"
+import styles from './index.module.css' 
 import NewListing from './NewListing'
 import Approved from './Approved'
 import Rejected from './Rejected'
