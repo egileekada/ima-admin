@@ -98,5 +98,6 @@ color: #fff;
 
 .whiteWrapper{
     padding: 23px 46px;
+    overflow-x: hidden;
 }
 
