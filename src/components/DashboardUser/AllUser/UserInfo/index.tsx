@@ -3,8 +3,8 @@ import Image from 'next/image'
 import styles from './index.module.css'
 
 
-export function UserInfo({ id,img, user, useremail, phone, email, seen, date, location, status}:
-    {img:string, id:string, user:string, useremail:string, phone:string, email:string, date:string, seen:string, location:string, status:string}){
+export function UserInfo({ click, id,img, user, useremail, phone, email, seen, date, location, status}:
+    {click: any,img:string, id:string, user:string, useremail:string, phone:string, email:string, date:string, seen:string, location:string, status:string}){
     return(
         <ul className={styles.userData}>
 
@@ -52,7 +52,7 @@ export function UserInfo({ id,img, user, useremail, phone, email, seen, date, lo
  
             <li>
                 <div className=" flex w-full justify-start " > 
-                    <button className={styles.viewButton}>View</button> 
+                    <button onClick={()=> click.click(true)} className={styles.viewButton}>View</button> 
                     <button className="ml-5" > 
                         <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
                     </button> 
