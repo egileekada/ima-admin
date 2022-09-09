@@ -8,7 +8,7 @@ export default function Index(){
 
     return( 
         <div className=" w-full overflow-x-hidden medium " > 
-            <div className='w-[100%] my-14 overflow-x-scroll' >
+            <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-14 overflow-x-scroll' >
                 <table className='text-xs bg-[#F7F8FA] '>
                     <thead style={{background: "#F7F8FA"}} >
                         <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
