@@ -9,6 +9,8 @@ export function WriteBlog(){
 
     const [value, setValue] = useState('')
 
+    const [blogData, setBlogData] = useState({title:'', image:'', data:''})
+
 const handleClick = () => {
     console.log(value)
 }
