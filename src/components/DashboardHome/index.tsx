@@ -22,7 +22,7 @@ export function DashboardHome(){
                         title="Customers" amount="5000" textColor='#FF9533'/>
                     </div>
                     <ResponsiveContainer width={'100%'} height="50%">
-                    <LineChart width={730} height={250} data={[{date:"67",value:1200,value2:788},{date:"2",value:900},{date:"12",value:200},{date:"178",value:600}]}
+                    <LineChart width={730} height={250} data={[{date:"67",value:1200,value2:788},{date:"2",value:900, value2:388},{date:"12",value:200, value2:269},{date:"178",value:600, value2:480}]}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="date" />
