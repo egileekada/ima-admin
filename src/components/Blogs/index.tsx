@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import Image from "next/image"
 import styles from './index.module.css'
 import { SeeBlogs } from "./SeeBlogs"
 import { useRouter } from "next/router"

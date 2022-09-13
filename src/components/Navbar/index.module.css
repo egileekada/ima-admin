@@ -10,3 +10,9 @@
     font-style: italic;
     font-weight: 400;
 } 
+
+.small{
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    }
