@@ -37,7 +37,7 @@ export function MyProperties({
     <ul className={styles.propertyList}>
       <li>
         <Link href="/detail">
-          <a>
+          <a style={{display:'flex', columnGap:'10px', alignItems:'center'}}>
             <input type="checkbox"></input>
             <div
               style={{

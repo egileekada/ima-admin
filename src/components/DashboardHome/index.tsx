@@ -4,20 +4,12 @@ import styles from './index.module.css'
 import { FileCount } from "../FileCount"
 import { RecentProperty } from "../RecentProperty"
 import { UserInfo } from "../UserInfo"
-import { Box } from "@mui/material"
-import {LineChart,Line,CartesianGrid,XAxis,YAxis,Tooltip,Legend} from "recharts"
+import {LineChart,Line,CartesianGrid,XAxis,YAxis,Tooltip,Legend, ResponsiveContainer} from "recharts"
 
 
 export function DashboardHome(){
     return(
-        <div  >
-            {/* <div className={styles.firstWrapper}>
-                <div><Image src='/images/Icon.png' width={18} height={12} alt='hamburger' /></div>
-                <p style={{marginLeft:27}}>Good morning, Maharram</p>
-                <div><Image src='/images/wave.png' height={24} width={24} alt='wave' /></div>
-                <p className={styles.small} style={{marginLeft:13}}>you have <span style={{color:'#3366FF'}}>1 new message</span></p>
-            </div> */}
-         
+        <div>
             <div className={styles.dashboardWrapper}>
                 <div className={styles.dashboardContainer}>
                     <p>Dashboard</p>
@@ -29,7 +21,7 @@ export function DashboardHome(){
                         <FileCount img='/images/folder-open-orange.png' background="rgba(255, 149, 51, 0.2)" 
                         title="Customers" amount="5000" textColor='#FF9533'/>
                     </div>
-                   <Box>
+                    <ResponsiveContainer width={'100%'} height="50%">
                     <LineChart width={730} height={250} data={[{date:"67",value:1200,value2:788},{date:"2",value:900},{date:"12",value:200},{date:"178",value:600}]}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -40,7 +32,7 @@ export function DashboardHome(){
                         <Line type="monotone" dataKey="value" stroke="#8884d8" />
                         <Line type="monotone" dataKey="value2" stroke="#82ca9d" />
                         </LineChart>
-                   </Box>
+                    </ResponsiveContainer>
                 </div>
                 <div className={styles.dashboardContainer}>
                 <div className={styles.arrow}><Image src='/images/arrowRight.png' width={6} height={10} alt='arrow-right' /></div>
