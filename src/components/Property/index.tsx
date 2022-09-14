@@ -21,7 +21,7 @@ const handleDelete = () => {
 
 const myStyle: object = {
     color: '#0984D6',
-    borderBottom: '1.5px solid #0984D6'
+    borderBottom: '2px solid #0984D6'
 }
 
 
