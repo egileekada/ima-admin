@@ -37,7 +37,7 @@ export function MyProperties({
     <ul className={styles.propertyList}>
       <li>
         <Link href="/detail">
-          <a style={{display:'flex', columnGap:'10px', alignItems:'center'}}>
+          <a className=" flex items-center " >
             <input type="checkbox"></input>
             <div
               style={{
@@ -46,8 +46,8 @@ export function MyProperties({
                 columnGap: "8px"
               }}
             >
-              <div>
-                <Image src={img} width={48} height={48} alt="property" />
+              <div className=" w-12 ml-2 " >
+                <img src={img} className='w-full h-12 object-cover' alt="property" />
               </div>
               <div>
                 <p>{description}</p>

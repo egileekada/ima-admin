@@ -1,11 +1,88 @@
 import type { NextPage } from "next";
-import Head from "next/head";
+import Head from "next/head"; 
+import { motion } from 'framer-motion'
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useFormik } from 'formik'; 
+import * as yup from 'yup'
+import React from "react" 
+import * as axios from 'axios'  
+import { getCookie, setCookie } from "cookies-next"; 
+import Modal from "../components/modal"
 import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
+import { BASEURL } from "../BasicUrl/Url";
 
 const Home: NextPage = () => {
+
+
   const router = useRouter();
+  const [message, setMessage] = React.useState('');
+  const [modal, setModal] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);   
+
+  const loginSchema = yup.object({ 
+      username: yup.string().required('Required'),
+      password: yup.string().required('Required') 
+  }) 
+
+  // formik
+  const formik = useFormik({
+      initialValues: {username: '', password: ''},
+      validationSchema: loginSchema,
+      onSubmit: () => {},
+  }); 
+  
+
+  const submit = async () => { 
+      if (!formik.dirty) { 
+        setMessage('You have to fill in th form to continue')
+        setModal(2)           
+        const t1 = setTimeout(() => {  
+            setModal(0)       
+            clearTimeout(t1);
+        }, 2000); 
+        return;
+      }else if (!formik.isValid) { 
+        setMessage('You have to fill in the form correctly to continue')
+        setModal(2)           
+        const t1 = setTimeout(() => {  
+            setModal(0)       
+            clearTimeout(t1);
+        }, 2000); 
+        return;
+      }else {
+          setLoading(true)
+          try { 
+      
+              const request = await axios.default.post(`${BASEURL.URL}/auth/login`, formik.values, {
+                  headers: { 'content-type': 'application/json', 
+              }})   
+              console.log(request.data.data.token);
+              setCookie("token", request.data.data.token);
+                  
+              setMessage('Loan On has been Processed submitted to the admin for approval')
+              setModal(1)  
+              const t1 = setTimeout(() => {
+                router.push("/dashboard");
+                  clearTimeout(t1); 
+              }, 2000);   
+              
+          } catch (error: any) { 
+              console.log(error.response.data.error.message);
+              
+              setMessage(error.response.data.error.message)
+              setModal(2)           
+              const t1 = setTimeout(() => {  
+                  setModal(0)     
+                  setLoading(false)  
+                  clearTimeout(t1);
+              }, 2000); 
+              return error
+          } 
+          setLoading(false)
+      }
+  } 
+
   return (
     <div>
       <Head>
@@ -72,7 +149,7 @@ const Home: NextPage = () => {
           >
             <div style={{ marginBottom: 48 }}>
               <input
-                type="email"
+                type="text"
                 placeholder="Email Address"
                 style={{
                   width: "100%",
@@ -81,11 +158,32 @@ const Home: NextPage = () => {
                   backgroundColor: "rgba(251, 251, 251, 1)",
                   border: "1px solid rgba(217, 217, 217, 1)"
                 }}
-              />
+                name="username"
+                onChange={formik.handleChange}
+                onFocus={() =>
+                    formik.setFieldTouched("username", true, true)
+                }
+              /> 
+              <div className="w-full h-auto pt-2">
+                  {formik.touched.username && formik.errors.username && (
+                      <motion.p
+                          initial={{ y: -50, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          className="text-xs font-Ubuntu-Medium text-[#ff0000]"
+                      >
+                          {formik.errors.username}
+                      </motion.p>
+                  )}
+              </div> 
             </div>
 
             <div style={{ marginBottom: 40 }}>
               <input
+                name="password"
+                onChange={formik.handleChange}
+                onFocus={() =>
+                    formik.setFieldTouched("password", true, true)
+                } 
                 type="password"
                 placeholder="Password"
                 style={{
@@ -96,12 +194,20 @@ const Home: NextPage = () => {
                   border: "1px solid rgba(217, 217, 217, 1)"
                 }}
               />
+              <div className="w-full h-auto pt-2">
+                  {formik.touched.password && formik.errors.password && (
+                      <motion.p
+                          initial={{ y: -50, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          className="text-xs font-Ubuntu-Medium text-[#ff0000]"
+                      >
+                          {formik.errors.password}
+                      </motion.p>
+                  )}
+              </div> 
             </div>
-            <button
-              onAbort={(e) => {
-                e.preventDefault();
-                router.push("/profile");
-              }}
+            <button 
+             onClick={()=> submit()} 
               style={{
                 padding: "14px 21px",
                 width: "100%",

@@ -38,52 +38,27 @@ export default function NewListing(props: any){
                     </li>
                     
                     <li>
-                        <p>Phone</p>
+                        <p>Created</p>
                     </li>
 
                     <li>
-                        <p>Email</p>
+                        <p>Total Commision</p>
                     </li>
 
                     <li>
-                        <p>Address</p>
+                        <p>Last Login</p>
                     </li>
 
                     <li>
-                        <p>Date joined</p>
+                        <p>Recent Activity</p>
                     </li>
                     
                     <li >
-                        <p>Last seen</p>
-                    </li>
-                    
-                    <li >
-                        <p>Status</p>
-                    </li>
-
-                    <li className='mr-auto' >
                         <p>Action</p>
-                    </li>
+                    </li> 
                 </ul>
-                <UserInfo click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Online' seen="Now"  />
-                <UserInfo  click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Offline' seen="1d ago"  /> 
-                <UserInfo  click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Offline' seen="10s ago"  /> 
-                <UserInfo  click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Online' seen="Now"  /> 
-                <UserInfo  click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Offline' seen="12m ago"  /> 
-                <UserInfo  click={props} id="001" img="/images/profilePics.png" user="John Emmanuel" useremail="@John" 
-                phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Online' seen="Now"  />  
-
+                <UserInfo click={props} id="001" img="/images/profilePics.png" user="Amarachi Maryy" amount="N300,000" lasted="27/08/20222:30pm"
+                 date="27/08/20222:30pm"   /> 
             </div>
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>
