@@ -2,8 +2,27 @@ import React from 'react'
 import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useQuery } from '@tanstack/react-query';
+import { BASEURL } from '../../../BasicUrl/Url';
+import { getCookie } from 'cookies-next';
 
-export default function NewListing(props: any){
+
+export default function NewListing(props: any){ 
+
+    const { isLoading, data } = useQuery(['Users'], () =>
+        fetch(`${BASEURL.URL}/users`, {
+            method: 'GET', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json', 
+                Authorization : `Bearer ${getCookie("token")}`
+            }
+        }).then(res =>
+            res.json()
+        )
+    )  
+
+    console.log(data); 
+
     return(
         <div> 
             <div className={styles.homeBottom}>

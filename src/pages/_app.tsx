@@ -3,9 +3,14 @@ import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 import { DashboardSideNav } from "../components";
 import Navbar from "../components/Navbar";
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return<QueryClientProvider client={queryClient}>
+    <Component {...pageProps} />
+  </QueryClientProvider>;
 }
 
 export default MyApp;
