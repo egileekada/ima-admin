@@ -3,7 +3,7 @@ import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function NewListing(){
+export default function NewListing(props:any){
     return(
         <div> 
             <div className={styles.homeBottom}>
@@ -49,19 +49,19 @@ export default function NewListing(){
                         <p>Action</p>
                     </li>
                 </ul>
-                <UserInfo id="001" verified={true} img="/images/profilePics.png" propertyNumber="4" user="John Emmanuel" useremail="@John" 
+                <UserInfo  click={props.click} id="001" verified={true} img="/images/profilePics.png" propertyNumber="4" user="John Emmanuel" useremail="@John" 
                 phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
                 status='Online' seen="Now"  /> 
-                <UserInfo id="001" verified={false}  img="/images/profilePics.png" propertyNumber="13" user="John Emmanuel" useremail="@John" 
+                <UserInfo  click={props.click} id="001" verified={false}  img="/images/profilePics.png" propertyNumber="13" user="John Emmanuel" useremail="@John" 
                 phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
                 status='Online' seen="Now"  /> 
-                <UserInfo id="001" verified={true} img="/images/profilePics.png" propertyNumber="443" user="John Emmanuel" useremail="@John" 
+                <UserInfo  click={props.click} id="001" verified={true} img="/images/profilePics.png" propertyNumber="443" user="John Emmanuel" useremail="@John" 
                 phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
                 status='Offline' seen="1d ago"  /> 
-                <UserInfo id="001" verified={false} img="/images/profilePics.png" propertyNumber="32" user="John Emmanuel" useremail="@John" 
+                <UserInfo  click={props.click} id="001" verified={false} img="/images/profilePics.png" propertyNumber="32" user="John Emmanuel" useremail="@John" 
                 phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
                 status='Offline' seen="10s ago"  />  
-                <UserInfo id="001" verified={false} img="/images/profilePics.png" propertyNumber="2" user="John Emmanuel" useremail="@John" 
+                <UserInfo click={props.click} id="001" verified={false} img="/images/profilePics.png" propertyNumber="2" user="John Emmanuel" useremail="@John" 
                 phone="08045934324" email="johndoe@example.com" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
                 status='Offline' seen="12m ago"  /> 
             </div>

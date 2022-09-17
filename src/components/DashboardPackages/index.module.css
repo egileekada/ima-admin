@@ -70,7 +70,7 @@ color: #2E3A59;
 
 .bottomHeading{
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr 0.7fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 16px 11px;
     column-gap: 10px;
     justify-content: space-between;

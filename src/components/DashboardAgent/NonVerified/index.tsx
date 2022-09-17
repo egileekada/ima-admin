@@ -3,7 +3,7 @@ import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function NewListing(){
+export default function NewListing(props: any){
     return(
         <div> 
             <div className={styles.homeBottom}>
