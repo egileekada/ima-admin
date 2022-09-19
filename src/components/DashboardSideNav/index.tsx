@@ -181,6 +181,32 @@ export function DashboardSideNav({
 
           <li
             className={styles.dashboardList}
+            style={page === "agents" ? backgroundStyle : {}}
+            onClick={() => setPage("agents")}
+          >
+            {page === "agents" && (
+              <div className={styles.curve}>
+                <Image src="/images/roundTop.png" width={25} height={25} />
+              </div>
+            )}
+            <div>
+              <Image
+                src="/images/dashboard.png"
+                width={15}
+                height={15}
+                alt="icon"
+              />
+            </div>
+            <p style={page === "agents" ? color : {}}>Agents</p>
+            {page === "agents" && (
+              <div className={styles.curve2}>
+                <Image src="/images/roundTop.png" width={25} height={25} />
+              </div>
+            )}
+          </li>
+
+          <li
+            className={styles.dashboardList}
             style={page === "wallet" ? backgroundStyle : {}}
             onClick={() => setPage("wallet")}
           >
@@ -250,6 +276,32 @@ export function DashboardSideNav({
               />
             </div>
             <p style={page === "bookings" ? color : {}}>Bookings</p>
+            {page === "bookings" && (
+              <div className={styles.curve2}>
+                <Image src="/images/roundTop.png" width={25} height={25} />
+              </div>
+            )}
+          </li>
+
+          <li
+            className={styles.dashboardList}
+            style={page === "packages" ? backgroundStyle : {}}
+            onClick={() => setPage("packages")}
+          >
+            {page === "packages" && (
+              <div className={styles.curve}>
+                <Image src="/images/roundTop.png" width={25} height={25} />
+              </div>
+            )}
+            <div>
+              <Image
+                src="/images/dashboard.png"
+                width={15}
+                height={15}
+                alt="icon"
+              />
+            </div>
+            <p style={page === "packages" ? color : {}}>Packages</p>
             {page === "bookings" && (
               <div className={styles.curve2}>
                 <Image src="/images/roundTop.png" width={25} height={25} />

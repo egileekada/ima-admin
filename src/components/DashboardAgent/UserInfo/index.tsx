@@ -56,8 +56,25 @@ export default function Index(){
                     <p className=" text-[#575C76] mt-2 " >Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci temporibus officia natus accusamus consequuntur, error repellat blanditiis rerum.</p>
                 </div>
             </div>
+
+
+            <div style={{border: "1px solid #D4D4D4", fontFamily: "Inter", fontWeight: "400" }} className=" w-full flex p-8 px-4 text-sm rounded-xl my-8 " >
+                <div className=" w-fit mx-6 " >
+                    <p className=" text-sm " >Identification</p>
+                    <img src="/images/National.png" alt="green" className=" w-52 h-auto mt-6 " />
+                </div>
+                <div className=" w-fit mx-6 " >
+                    <p className=" text-sm " >Identification</p>
+                    <img src="/images/verifiedphoto.png" alt="green" className=" w-44 h-auto mt-6 " />
+                </div>
+                <div className=" w-fit mx-6 " >
+                    <p className=" text-sm " >Identification</p>
+                    <img src="/images/verifiedphoto.png" alt="green" className=" w-44 h-auto mt-6 " />
+                </div> 
+            </div>
+
             <div className=' w-full grid grid-cols-6 py-7 ' > 
-                <div className=' bg-[#FF953333] flex items-center flex-col p-2 px-4 rounded-lg mx-2 ' >
+                <div className=' bg-[#FF953333] flex items-center flex-col p-2  px-4 rounded-lg mx-2 ' >
                     <div className=' flex justify-center mb-1  ' >
                         <img src="/images/folder-open4.png" alt="green" className=" w-8 h-8 mr-2 " />
                         <p style={{fontFamily: "Montserrat", fontWeight: "700", color: "#FF9533", fontSize: "15px"}} >Messages</p>
@@ -90,7 +107,7 @@ export default function Index(){
                 </button> 
             </div>
             {tab === 0 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -170,7 +187,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 1 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -238,7 +255,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 2 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -284,7 +301,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 3 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -336,7 +353,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 4 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -499,7 +516,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 5 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
@@ -549,7 +566,7 @@ export default function Index(){
                 </div>
             )}
             {tab === 6 && ( 
-                <div className='w-[100%] my-4 overflow-x-scroll' >
+                <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}} >
                             <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
