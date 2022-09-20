@@ -3,8 +3,10 @@ import Image from "next/image";
 import styles from "./index.module.css";
 import { DeleteProperty } from "../Modals/deleteProperty";
 import Link from "next/link";
+import Router from "next/router";
 
 export function MyProperties({
+  click,
   img,
   description,
   price,
@@ -19,6 +21,7 @@ export function MyProperties({
   showDelete,
   setPage
 }: {
+  click: any;
   img: string;
   description: string;
   price: string;
@@ -36,7 +39,7 @@ export function MyProperties({
   return (
     <ul className={styles.propertyList}>
       <li>
-        <Link href="/detail">
+        {/* <Link href="/detail"> */}
           <a className=" flex items-center " >
             <input type="checkbox"></input>
             <div
@@ -55,7 +58,7 @@ export function MyProperties({
               </div>
             </div>
           </a>
-        </Link>
+        {/* </Link> */}
       </li>
 
       <li>{agent}</li>
@@ -78,7 +81,7 @@ export function MyProperties({
 
       <li>
         {showDelete && <DeleteProperty handleDelete={handleDelete} />}
-        <p style={{ fontWeight: 700, color: "#0984D6", cursor: "pointer" }}>
+        <p onClick={()=> {localStorage.setItem("propertyId", click), Router.push("/detail")}} style={{ fontWeight: 700, color: "#0984D6", cursor: "pointer" }}>
           View
         </p>
         {remove === "true" && (

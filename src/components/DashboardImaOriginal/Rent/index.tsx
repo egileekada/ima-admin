@@ -2,64 +2,117 @@ import React from 'react'
 import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { BASEURL } from '../../../BasicUrl/Url'
+import { useQuery } from '@tanstack/react-query'
+import { getCookie } from 'cookies-next'
+import Router from 'next/router'
 
 export default function NewListing(){
+ 
+    const { isLoading, data } = useQuery(['properties'], () =>
+    fetch(`${BASEURL.URL}/properties`, {
+        method: 'GET', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json', 
+            Authorization : `Bearer ${getCookie("token")}`
+        }
+    }).then(res =>
+        res.json()
+    )
+    )  
+
     return(
-        <div> 
-            <div className={styles.homeBottom}>
-                <ul className={styles.bottomHeading}>
-                    <li style={{display:'flex', alignItems:'center'}}>
-                        <input type='checkbox' style={{marginRight:'10px'}}></input>
-                        <p style={{display:'inline'}}>Property</p>
-                    </li>
-                    
-                    <li>
-                        <p>Account</p>
-                    </li>
-
-                    <li>
-                        <p>Agent</p>
-                    </li>
-
-                    <li>
-                        <p>Location</p>
-                    </li>
-
-                    <li>
-                        <p>Type</p>
-                    </li>
-
-                    <li>
-                        <p>Date</p>
-                    </li>
-
-                    <li>
-                        <p>Loan</p>
-                    </li> 
-
-                    <li>
-                        <p>Status</p>
-                    </li>
-
-                    <li >
-                        <p>Action</p>
-                    </li> 
-                </ul>
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                account="Ima Original" agent="Prince David" type="Rent" loan="" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Active'/> 
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                account="Ima Original" agent="Prince David" type="Rent" loan="Rent on Loan" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Rented'/> 
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                account="Ima Original" agent="Prince David" type="Rent" loan="" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Active'/> 
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                account="Ima Original" agent="Prince David" type="Rent" loan="" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Active'/> 
-                <UserInfo img="/images/building.png" property="1 bedroom flat" price="350,000" 
-                account="Ima Original" agent="Prince David" type="Rent" loan="" date="27/08/20222:30pm" location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-                status='Active'/> 
+        <div>  
+            <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-4 overflow-x-scroll' >
+                <table className='text-xs bg-[#F7F8FA] '>
+                <thead style={{background: "#F7F8FA"}}  >
+                        <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
+                            <td className='w-48 '>
+                                <div className=" ml-4 flex w-48 items-center  " > 
+                                    <input type="checkbox" />
+                                    <p className="ml-2">Property</p>
+                                </div>
+                            </td>
+                            <td className=' w-28'>
+                                <p className="w-28">Account</p>
+                            </td> 
+                            <td className=' w-28'>
+                                <p className="w-28">Listed By</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28">Location</p>
+                            </td>
+                            <td className=''>
+                                <p className="w-28 flex justify-center">Type</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28  ml-2">Date</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28 ml-4 ">Loan</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28 ">Status</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28 ">Action</p>
+                            </td>   
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        {!isLoading && ( 
+                            <>
+                                {data.data?.properties?.filter((item: any) => item.type !== "Buy")?.map((item: any, index: any)=> {
+                                    return( 
+                                        <tr className='font-Poppins-Semibold text-xs ' > 
+                                            <td className='bg-white w-48 '>
+                                                <div className="mt-6 ml-4  mb-3 flex items-center " > 
+                                                    <input type="checkbox" />
+                                                    <div className={styles.avatar} style={{marginRight:'5px' }}> 
+                                                    <div className=" w-12 ml-2 mr-2 rounded-lg " >
+                                                        <img src={item?.imagesURLs[0]} className='w-full h-12 object-cover rounded-lg' alt="property" />
+                                                    </div>
+                                                    </div>
+                                                    <div className=" ml-1 " >
+                                                        <p style={{fontSize:'12px'}}>{item?.name}</p>
+                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>{(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                    </div>
+                                                </div> 
+                                            </td>
+                                            <td className=' w-28 bg-white'>
+                                                <p className="w-28">Ima Original</p>
+                                            </td> 
+                                            <td className='bg-white'>
+                                                <p className="w-28 mt-6 mb-3">{item?.uploadedBy?.username}</p>
+                                            </td>
+                                            <td className='bg-white w-28 relative '>
+                                                <p className="mt-6 mb-3 w-fit ">{item?.location?.address+", "+item?.location?.city+", "+item?.location?.state}</p>
+                                            </td>  
+                                            <td className='bg-white mt-6 mb-3 ml-2 w-28'>
+                                                <p style={{fontSize:'12px'}} className={item?.type === "Buy" ? " bg-[#FF333F1A] text-[#EB3223] w-11 py-1  flex justify-center rounded-lg mx-auto ":"bg-[#0984D61A] flex justify-center py-1 text-[#0984D6] w-11 rounded-lg mx-auto "} >{item?.type}</p>
+                                                {/* <p className=" mt-6 mb-3 ml-2 w-28">{item?.location?.address+", "+item?.location?.city+", "+item?.location?.state}</p> */}
+                                            </td> 
+                                            <td className='bg-white  w-28'>
+                                                <p className=" mt-1 ">{new Date(item?.createdAt).toUTCString()}</p>
+                                            </td>  
+                                            <td className='bg-white'>
+                                                <p className={item?.type === "Buy" ? "w-28 mt-6 ml-4 mb-3" : "w-28 mt-6 mb-3 ml-4 underline text-[#0984D6]"}>{item?.type === "Buy" ? "Nill":"Rent on loan"}</p>
+                                            </td>
+                                            <td className='bg-white'>
+                                                <p className={item?.type === "Buy" ? "w-28 mt-6 mb-3" : "w-28 mt-6 mb-3 underline text-[#0984D6]"}>{item?.type === "Buy" ? "Active":"Rented"}</p>
+                                            </td>
+                                            <td className='bg-white  w-28'> 
+                                                <div className=" text-[#0984D6] flex w-full  mt-3 justify-start " > 
+                                                    <button onClick={()=> {localStorage.setItem("propertyId", item._id), Router.push("/detail")}} className={styles.viewButton}>View</button> 
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </>
+                        )}
+                    </tbody>
+                </table>
             </div>
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>

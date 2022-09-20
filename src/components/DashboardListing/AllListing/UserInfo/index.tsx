@@ -11,11 +11,13 @@ export function UserInfo({img, property, price, listby, type, date, location, st
             <li style={{display:'flex', alignItems:'center'}}>
                 <input type='checkbox' style={{marginRight:'10px'}}></input>
                 <div className={styles.avatar} style={{marginRight:'5px'}}>
-                    <div><Image src={img} width={48} height={48} alt='avatar' style={{borderRadius:'8px'}}/></div>
+              <div className=" w-12 ml-2 mr-2 rounded-lg " >
+                <img src={img} className='w-full h-12 object-cover rounded-lg' alt="property" />
+              </div>
                 </div>
                 <div className=" ml-1 flex flex-col justify-start " >
                     <p style={{fontSize:'12px'}}>{property}</p>
-                    <p className="mr-auto" style={{fontSize:'12px', color:'#90A0B7'}}>₦{price}</p>
+                    <p className=" " style={{fontSize:'12px', color:'#90A0B7'}}>₦{price}</p>
                 </div>
             </li>
 

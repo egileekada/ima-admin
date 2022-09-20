@@ -124,20 +124,7 @@ export default function NewListing(props: any){
                     </tbody>
                 </table>
             </div>
-            <div className={styles.homeBottom}>
-                {/* <ul className={styles.bottomHeading}> */}
-  
-                {/* {!isLoading && ( 
-                    <>
-                        {data.data.users.map((item: any, index: any)=> {
-                            return( 
-                                <UserInfo click={props} id={index+1} img="/images/profilePics.png" user={item.username} useremail={""}
-                                    phone="08045934324" email={item.email} date={new Date(item?.createdAt).toUTCString()} location={item?.location?.address+", "+item?.location?.city+", "+item?.location?.state}
-                                    status='Online' seen="Now"  />
-                            )
-                        })}
-                    </> 
-                )} */}
+            <div className={styles.homeBottom}> 
 
             </div>
             <div className=' w-full flex items-center mt-20 ' >

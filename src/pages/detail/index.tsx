@@ -7,7 +7,7 @@ import { PropertyDetails } from "../../components/propertyDetails";
 const Index: NextPage = () => {
   return (
     <Layout>
-      <PropertyDetails />;
+      <PropertyDetails />
     </Layout>
   );
 };
