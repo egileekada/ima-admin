@@ -4,7 +4,7 @@ import styles from './index.module.css'
 
 
 export function UserInfo({img, name, mobile, email, date, location, status}:
-    {img:string, name:string, mobile:string, email:string, date:string, location:string, status:string}){
+    {[x:string]:any}){
     return(
         <ul className={styles.userData}>
 
