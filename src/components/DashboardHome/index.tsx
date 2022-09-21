@@ -20,22 +20,30 @@ useEffect(() => {
     const allUsersResponse = await axios.get(`${BASEURL.URL}/users`, { headers: {
         Authorization: `Bearer ${getCookie('token')}`
     }})
-    const allPropertiesResponse = await axios.get(`${BASEURL.URL}/properties?limit=2`, { headers: {
+    const allPropertiesResponse = await axios.get(`${BASEURL.URL}/properties`, { headers: {
         Authorization: `Bearer ${getCookie('token')}`
     }})
-    console.log(allPropertiesResponse.data.data.properties)
+    setAllProperties(allPropertiesResponse.data.data.properties)
     setAllUsers(allUsersResponse.data.data.users)
  }
  getUsers()
 
 }, [])
 
-
-const displayUsers = allUsers?.map(user => {
+const sixUsers = allUsers?.slice(0,6)
+const displayUsers = sixUsers.map(user => {
     return ( <UserInfo key={user._id} img="/images/avatar.png" name={user.username} mobile="+998 (99) 436-46-15" 
     email={user.email} date={user.createdAt} location="2 New Road, Farm Road, PortHarcourt, Rivers State"
-    status= 'Not Verified'/>)
+    status= {user.isVerified ? 'Verified Agent' : 'Not Verified'}/>)
 })
+
+const displayProperties = allProperties?.map(property => {
+    return (
+        <RecentProperty key={property._id} img="/images/recentImage1.png" description={property.description}
+        location={`${property.location.address}, ${property.location.city}, ${property.location.state}`} action={property.type} price={property.price}/>
+    )
+})
+
 
 
 
@@ -53,7 +61,7 @@ const displayUsers = allUsers?.map(user => {
                         <FileCount img='/images/folder-open-orange.png' background="rgba(255, 149, 51, 0.2)" 
                         title="Customers" amount="5000" textColor='#FF9533'/>
                     </div>
-                    {/* <ResponsiveContainer width={'100%'} height="50%">
+                    <ResponsiveContainer width={'100%'} height="50%">
                     <LineChart width={730} height={250} data={[{date:"67",value:1200,value2:788},{date:"2",value:900, value2:388},{date:"12",value:200, value2:269},{date:"178",value:600, value2:480}]}
                         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -64,13 +72,13 @@ const displayUsers = allUsers?.map(user => {
                         <Line type="monotone" dataKey="value" stroke="#8884d8" />
                         <Line type="monotone" dataKey="value2" stroke="#82ca9d" />
                         </LineChart>
-                    </ResponsiveContainer> */}
+                    </ResponsiveContainer>
                 </div>
                 <div className={styles.dashboardContainer}>
                 <div className={styles.arrow}><Image src='/images/arrowRight.png' width={6} height={10} alt='arrow-right' /></div>
                     <p>Recent Property</p>
                     <div className={styles.myRecentHolder}>
-                        <RecentProperty img="/images/recentImage1.png" description="1 bedroom flat" 
+                        {/* <RecentProperty img="/images/recentImage1.png" description="1 bedroom flat" 
                         location="Port Harcourt, Rivers" action='Rent' price='350,000'/>
 
                         <RecentProperty img="/images/recentImage1.png" description="1 bedroom flat" 
@@ -86,7 +94,8 @@ const displayUsers = allUsers?.map(user => {
                         location="Port Harcourt, Rivers" action='Rent' price='350,000'/>
 
                         <RecentProperty img="/images/recentImage1.png" description="1 bedroom flat" 
-                        location="Port Harcourt, Rivers" action='Buy' price='350,000'/>
+                        location="Port Harcourt, Rivers" action='Buy' price='350,000'/> */}
+                        {displayProperties}
                     </div>
                 </div>
                 <div className={styles.homeBottom}>
