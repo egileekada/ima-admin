@@ -74,11 +74,11 @@ export function DashboardSideNav({
           <li
             className={styles.dashboardList}
             style={
-              page === "property" || page === "detail" ? backgroundStyle : {}
+              page === "property" ? backgroundStyle : {}
             }
             onClick={() => setPage("property")}
           >
-            {(page === "property" || page === "detail") && (
+            {(page === "property") && (
               <div className={styles.curve}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
@@ -91,10 +91,10 @@ export function DashboardSideNav({
                 alt="icon"
               />
             </div>
-            <p style={page === "property" || page === "detail" ? color : {}}>
+            <p style={page === "property" ? color : {}}>
               Property
             </p>
-            {(page === "property" || page === "detail") && (
+            {(page === "property") && (
               <div className={styles.curve2}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
