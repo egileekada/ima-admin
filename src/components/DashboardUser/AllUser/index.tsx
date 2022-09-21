@@ -24,9 +24,7 @@ export default function NewListing(props: any){
     )  
 
 
-    let verified = true
-
-    console.log(data); 
+    let verified = true 
 
     return(
         <div> 
