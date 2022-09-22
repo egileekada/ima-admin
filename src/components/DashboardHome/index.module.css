@@ -16,6 +16,7 @@ font-size: 12px;
 font-weight: 400;
 }
 
+
 .dashboardWrapper{
     display: grid;
     grid-template-columns: 3fr 2fr;
