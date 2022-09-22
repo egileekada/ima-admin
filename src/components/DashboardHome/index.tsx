@@ -13,13 +13,14 @@ import { Pagination } from "../Pagination"
 
 export function DashboardHome(){
 
-    const [page, setPage] = useState(4)
+    const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(0)
     const [allUsers, setAllUsers] = useState([])
     const [allProperties, setAllProperties] = useState([])
 
 useEffect(() => {
  const getUsers = async () => {
-    const allUsersResponse = await axios.get(`${BASEURL.URL}/users/limit=2page=${page}`, { headers: {
+    const allUsersResponse = await axios.get(`${BASEURL.URL}/users?limit=6&page=${page}`, { headers: {
         Authorization: `Bearer ${getCookie('token')}`
     }})
     const allPropertiesResponse = await axios.get(`${BASEURL.URL}/properties`, { headers: {
@@ -27,11 +28,12 @@ useEffect(() => {
     }})
     setAllProperties(allPropertiesResponse.data.data.properties)
     setAllUsers(allUsersResponse.data.data.users)
-    console.log(allUsersResponse.data.data)
+    setPageCount(allUsersResponse.data.data.pages)
  }
  getUsers()
 
-}, [])
+}, [page])
+
 
 const sixProperties = allProperties?.slice(0,6)
 const displayUsers = allUsers.map(user => {
@@ -46,7 +48,6 @@ const displayProperties = sixProperties?.map(property => {
         location={`${property.location.address}, ${property.location.city}, ${property.location.state}`} action={property.type} price={property.price}/>
     )
 })
-
 
 
 
@@ -114,7 +115,7 @@ const displayProperties = sixProperties?.map(property => {
                     {displayUsers}
                 </div>
             </div>
-                    <Pagination page={page} setPage={setPage} />
+                    <Pagination page={page} setPage={setPage} pageCount={pageCount} />
         </div>
     )
 }
