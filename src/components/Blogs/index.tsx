@@ -1,10 +1,34 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styles from './index.module.css'
 import { SeeBlogs } from "./SeeBlogs"
 import { useRouter } from "next/router"
+import { Pagination } from "../Pagination"
+import {BASEURL} from '../../BasicUrl/Url'
+import { getCookie } from "cookies-next"
+const axios = require('axios')
 
 
 export function MyBlogs(){
+
+    const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(0)
+    const [allBlogs, setAllBlogs] = useState([])
+
+useEffect(() => {
+ const getBlogs = async () => {
+    const allBlogsResponse = await axios.get(`${BASEURL.URL}/blogs?limit=2&page=${page}`, { headers: {
+        Authorization: `Bearer ${getCookie('token')}`
+    }})
+    setAllBlogs(allBlogsResponse.data.data.blog)
+    setPageCount(allBlogsResponse.data.data.pages)
+ }
+ getBlogs()
+
+}, [page])
+ 
+console.log(allBlogs)
+console.log(pageCount)
+
     const router = useRouter()
 
     const [currentPage, setCurrentPage] = useState('all')
@@ -13,6 +37,13 @@ export function MyBlogs(){
         borderBottom: '2.5px solid #0984D6',
         color: '#0984D6'
     }
+
+    const myBlogs = allBlogs.map(blog => {
+        return <SeeBlogs key={blog._id} title={blog.title} body={blog.body} 
+        addedBy={blog.addedBy.username} date={blog.createdAt}/>
+    })
+
+
 
     return(
         <div>
@@ -31,9 +62,9 @@ export function MyBlogs(){
             </div>
             
             <div className={styles.availablePosts}>
-                <SeeBlogs blogId={1}/>
-                <SeeBlogs blogId={2}/>
+                {myBlogs}
             </div>
+            <Pagination page={page} setPage={setPage} pageCount={pageCount} />
         </div>
     )
 }
