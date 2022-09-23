@@ -18,9 +18,7 @@ export default function NewListing(){
             }
         }).then(res =>
             res.json()
-    ))
-
-    console.log(data);
+    )) 
     
 
     return(

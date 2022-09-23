@@ -19,10 +19,7 @@ export function PropertyDetails() {
     }).then(res =>
         res.json()
     )
-  )  
-
-  console.log(data);
-  
+  )     
 
   return (
     <>

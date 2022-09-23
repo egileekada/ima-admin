@@ -5,11 +5,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useQuery } from '@tanstack/react-query';
 import { BASEURL } from '../../../BasicUrl/Url';
 import { getCookie } from 'cookies-next';
-import Image from 'next/image'
-import { verify } from 'crypto';
+import Image from 'next/image' 
 
 
-export default function NewListing(props: any){ 
+export default function Index(props: any){ 
 
     const { isLoading, data } = useQuery(['Users'], () =>
         fetch(`${BASEURL.URL}/users`, {
@@ -23,44 +22,46 @@ export default function NewListing(props: any){
         )
     )  
 
+    console.log(data);
+    
 
     let verified = true 
 
     return(
         <div> 
 
-            <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-14 overflow-x-scroll' >
+            <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-14 overflow-x-auto' >
                 <table className='text-xs bg-[#F7F8FA] '>
-                    <thead style={{background: "#F7F8FA"}} >
-                        <tr className='font-Poppins-Semibold bg-[#F7F8FA] ' >
-                            <td className='w-24 bg-white'>
-                                <div className="flex w-24 items-center  " > 
+                        <thead style={{background: "#F7F8FA"}}  >
+                            <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
+                            <td className='w-24 '>
+                                <div className="flex ml-4 w-24 items-center  " > 
                                     <input type="checkbox" />
                                     <p className="ml-2">ID</p>
                                 </div>
                             </td>
-                            <td className='bg-white w-48'>
+                            <td className=' w-48'>
                                 <p className="w-48">User</p>
                             </td> 
-                            <td className='bg-white'>
+                            <td className=''>
                                 <p className="w-28">Phone</p>
                             </td>
-                            <td className='bg-white'>
+                            <td className=''>
                                 <p className="w-28">Email</p>
                             </td> 
-                            <td className='bg-white'>
+                            <td className=''>
                                 <p className="w-28  ml-2">Address</p>
                             </td> 
-                            <td className='bg-white'>
+                            <td className=''>
                                 <p className="w-28">Date joined</p>
                             </td> 
-                            <td className='bg-white'>
-                                <p className="w-28  ml-2">Last seen</p>
+                            <td className=''>
+                                <p className="w-28  ml-4">Last seen</p>
                             </td> 
-                            <td className='bg-white'>
-                                <p className="w-28">Status</p>
+                            <td className=''>
+                                <p className="w-28 ml-4">Status</p>
                             </td>  
-                            <td className='bg-white'>
+                            <td className=''>
                                 <p className="w-28 flex justify-stat">Action</p>
                             </td> 
                         </tr>
@@ -72,7 +73,7 @@ export default function NewListing(props: any){
                                     return( 
                                         <tr className='font-Poppins-Semibold text-xs ' >
                                             <td className='w-24 bg-white'>
-                                                <div className=" mt-6 mb-3 flex items-center" > 
+                                                <div className=" mt-6 ml-4 mb-3 flex items-center" > 
                                                     <input type="checkbox" />
                                                     <p className="ml-2">{index+1}</p>
                                                 </div>
@@ -84,7 +85,7 @@ export default function NewListing(props: any){
                                                     </div>
                                                     <div className=" ml-1 " >
                                                         <p style={{fontSize:'12px'}}>{item.username}</p>
-                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john <div>{verified && (<img src="/images/Approval.png" className=" w-4 h-4 ml-2 " alt='avatar' />)}</div></p>
+                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john <div>{item?.isVerified && (<img src="/images/Approval.png" className=" w-4 h-4 ml-2 " alt='avatar' />)}</div></p>
                                                     </div>
                                                 </div> 
                                             </td>
@@ -98,17 +99,17 @@ export default function NewListing(props: any){
                                                 <p className=" mt-6 mb-3 ml-2 w-28">{item?.location?.address+", "+item?.location?.city+", "+item?.location?.state}</p>
                                             </td> 
                                             <td className='bg-white  w-28'>
-                                                <p className=" mt-1 ">{new Date(item?.createdAt).toUTCString()}</p>
+                                                <p className="mt-6 mb-3">{new Date(item?.createdAt).toUTCString()}</p>
                                             </td> 
                                             <td className='bg-white'>
-                                                <p className=" mt-6 mb-3 ml-2 w-28">Not paid</p>
+                                                <p className=" mt-6 mb-3 ml-4 w-28">{new Date(item?.lastSeen).toUTCString()}</p>
                                             </td>    
                                             <td className='bg-white'>
-                                                <p className="w-28 mt-6 mb-3">Pending</p>
+                                                <p className="w-28 mt-6 mb-3  ml-4 ">{item?.status}</p>
                                             </td> 
                                             <td className='bg-white'> 
-                                                <div className=" flex w-full justify-start " > 
-                                                    <button onClick={()=> props.click(true)} className={styles.viewButton}>View</button> 
+                                                <div className=" flex mt-6 mb-3 w-full justify-start" > 
+                                                    <button onClick={()=> [props.click(true), localStorage.setItem("usertabIndex", item._id)]} className=" text-[#0984D6] " >View</button> 
                                                     <button className="ml-5" > 
                                                         <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
                                                     </button> 

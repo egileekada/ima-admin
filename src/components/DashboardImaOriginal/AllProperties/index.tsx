@@ -76,7 +76,7 @@ export default function NewListing(){
                                                     </div>
                                                     <div className=" ml-1 " >
                                                         <p style={{fontSize:'12px'}}>{item?.name}</p>
-                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>{(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>{(item?.price)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                                                     </div>
                                                 </div> 
                                             </td>

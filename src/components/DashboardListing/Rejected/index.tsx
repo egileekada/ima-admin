@@ -7,9 +7,12 @@ import { useQuery } from '@tanstack/react-query'
 import { getCookie } from 'cookies-next'
 import Image from 'next/image'
 import Router from 'next/router'
+import { DeleteProperty } from '../../Modals/deleteProperty'
 
 export default function NewListing(){
 
+    const [showDelete, setshowDelete] = React.useState(false)
+    const [index, setIndex] = React.useState(''); 
     const { isLoading, data } = useQuery(['properties'], () =>
     fetch(`${BASEURL.URL}/properties`, {
         method: 'GET', // or 'PUT'
@@ -57,7 +60,7 @@ export default function NewListing(){
                     <tbody> 
                         {!isLoading && ( 
                             <>
-                                {data.data?.properties.map((item: any, index: any)=> {
+                                {data.data?.properties.filter((item: any)=> item.status === "declined").map((item: any, index: any)=> {
                                     return( 
                                         <tr className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>
@@ -116,11 +119,10 @@ export default function NewListing(){
                                             <td className='bg-white  w-28'> 
                                                 <div className=" text-[#0984D6] ml-4 flex w-full justify-start " > 
                                                     <button onClick={()=> {localStorage.setItem("propertyId", item._id), Router.push("/detail")}} className={styles.viewButton}>View</button>
-                                                    {/* {status !== '' && ( */}
-                                                        <button className="ml-5" > 
-                                                            <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                                        </button>
-                                                    {/* )} */}
+                                                    
+                                                    <button onClick={()=> [setshowDelete((prev) => !prev), setIndex(item._id)]} className="ml-5" > 
+                                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                                    </button> 
                                                 </div>
                                             </td>
                                         </tr>
@@ -131,6 +133,8 @@ export default function NewListing(){
                     </tbody>
                 </table>
             </div>
+            {showDelete &&  
+                <DeleteProperty show={true} handleDelete={setshowDelete} click={index}/>}
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>
                 <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex justify-center items-center ml-4 ' ><IoIosArrowBack size={15} /></button>

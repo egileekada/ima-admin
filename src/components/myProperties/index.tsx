@@ -5,7 +5,7 @@ import { DeleteProperty } from "../Modals/deleteProperty";
 import Link from "next/link";
 import Router from "next/router";
 
-export function MyProperties({
+export function MyProperties({ 
   click,
   img,
   description,
@@ -20,7 +20,7 @@ export function MyProperties({
   handleDelete,
   showDelete,
   setPage
-}: {
+}: { 
   click: any;
   img: string;
   description: string;
@@ -80,7 +80,7 @@ export function MyProperties({
       <li>{status}</li>
 
       <li>
-        {showDelete && <DeleteProperty handleDelete={handleDelete} />}
+        {showDelete && <DeleteProperty handleDelete={handleDelete} click={click}/>}
         <p onClick={()=> {localStorage.setItem("propertyId", click), Router.push("/detail")}} style={{ fontWeight: 700, color: "#0984D6", cursor: "pointer" }}>
           View
         </p>

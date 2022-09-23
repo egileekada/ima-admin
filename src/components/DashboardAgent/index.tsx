@@ -4,6 +4,7 @@ import AllAgent from './AllAgent'
 import Verified from './Verified'
 import NonVerified from './NonVerified'
 import UserInfo from './UserInfo'
+import Pending from './Pending'
 
 export default function Index(){
 
@@ -45,8 +46,11 @@ export default function Index(){
                     {tab === 2 && (
                         <NonVerified click={setInfoTab} />
                     )}
+                    {tab === 3 && (
+                        <Pending click={setInfoTab} />
+                    )}
                     {/* {tab === 3 && (
-                        <Offline />
+                        <Pen />
                     )} */}
                 </>
             )}
