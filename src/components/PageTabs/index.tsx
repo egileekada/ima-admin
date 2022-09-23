@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import styles from './index.module.css'
 
-export function PageTabs({page, setPage,activeTab, setActiveTab}:{[x:string]:any}){
+export function PageTabs({page, setPage, activeTab, setActiveTab}:{[x:string]:any}){
 
 
     return(

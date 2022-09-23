@@ -7,13 +7,25 @@ import { getCookie } from "cookies-next"
 const axios = require('axios')
 
 
-export function SeeBlogs({title, body, addedBy, date}:{[x:string]:any}){
+export function SeeBlogs({title, body, addedBy, date, blogID, setTouchedBlog, touchedBlog}:{[x:string]:any}){
 
 
+    const deletePost = async() => {
+        const token = getCookie('token')
+    const deleteResponse = await axios.delete(`${BASEURL.URL}/blogs/${blogID}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    }
 
+    
     return(
         <div className={styles.mainWrapper}>
-            <div><Image src='/images/remove.png' width={11.67} height={15} alt='trash' style={{cursor:'pointer'}}/></div>
+            <div onClick={()=> {
+                deletePost()
+                setTouchedBlog(prevState => !prevState)
+            }}><Image src='/images/remove.png' width={11.67} height={15} alt='trash' style={{cursor:'pointer'}}/></div>
             <div className={styles.rightContainer} style={{alignItems:'center'}}>
             <div className={styles.imageSection}>
                 <div className={styles.blogImageWrapper}><Image src='/images/blogImage.png' width={250} height={249} alt='blog-cover'/></div>

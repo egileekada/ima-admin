@@ -14,6 +14,7 @@ import { Pagination } from "../Pagination"
 export function DashboardHome(){
 
     const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(0)
     const [pageCount, setPageCount] = useState(0)
     const [allUsers, setAllUsers] = useState([])
     const [allProperties, setAllProperties] = useState([])
@@ -29,6 +30,7 @@ useEffect(() => {
     setAllProperties(allPropertiesResponse.data.data.properties)
     setAllUsers(allUsersResponse.data.data.users)
     setPageCount(allUsersResponse.data.data.pages)
+    setLimit(allUsersResponse.data.data.next)
  }
  getUsers()
 
@@ -48,6 +50,8 @@ const displayProperties = sixProperties?.map(property => {
         location={`${property.location.address}, ${property.location.city}, ${property.location.state}`} action={property.type} price={property.price}/>
     )
 })
+
+console.log(limit)
 
 
 
@@ -115,7 +119,7 @@ const displayProperties = sixProperties?.map(property => {
                     {displayUsers}
                 </div>
             </div>
-                    <Pagination page={page} setPage={setPage} pageCount={pageCount} />
+                    <Pagination page={page} setPage={setPage} pageCount={pageCount} limit={limit} />
         </div>
     )
 }
