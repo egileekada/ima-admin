@@ -1,39 +1,37 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Image from "next/image"
 import styles from './index.module.css'
 import Link from "next/link"
+import {BASEURL} from '../../../BasicUrl/Url'
+import { getCookie } from "cookies-next"
+const axios = require('axios')
 
 
-export function SeeBlogs({blogId}:{[x:string]:any}){
+export function SeeBlogs({title, body, addedBy, date}:{[x:string]:any}){
+
+
 
     return(
         <div className={styles.mainWrapper}>
             <div><Image src='/images/remove.png' width={11.67} height={15} alt='trash' style={{cursor:'pointer'}}/></div>
-            <div className={styles.rightContainer}>
+            <div className={styles.rightContainer} style={{alignItems:'center'}}>
             <div className={styles.imageSection}>
                 <div className={styles.blogImageWrapper}><Image src='/images/blogImage.png' width={250} height={249} alt='blog-cover'/></div>
                 <div className={styles.blogBottom}>
                     <div className={styles.adminSide}>
                         <Image src='/images/Manager.png' width={13} height={14} alt='user'/>
-                        <p>By Admin</p>
+                        <p>{addedBy}</p>
                     </div>
-                    <p>10 ways to build a way without borrowing money</p>
+                    <p>{title}</p>
                     <hr/>
                     <div className={styles.dateSide} style={{marginBlock:'10px'}}>
                         <Image src='/images/Calendar.png' width={12} height={12} alt='calendar'/>
-                        <p>June 10 2022</p>
+                        <p>{date.slice(0,10)}</p>
                     </div>
                 </div>
             </div>
             <p className={styles.text}>
-            Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit.
-            Etiam eu turpis molestie, dictum est a, mattis tellus.
-            Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin
-            lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit,
-            sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per
-            conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas,
-            ac scelerisque ante pulvinar. 
+            {body}
             <Link href="/first">
                 <span>READ MORE</span>
             </Link>
