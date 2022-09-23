@@ -1,0 +1,19 @@
+.btn {
+    border: 1px solid #EFF0F4;
+    padding: 5px 12px;
+    font-family: Poppins;
+font-size: 12px;
+border-radius: 3px;
+margin-inline: 6px;
+}
+
+.activeBtn{
+    background: #5459EA;
+    border: none;
+    color: #fff;
+    padding: 5px 12px;
+    font-family: Poppins;
+font-size: 12px;
+border-radius: 3px;
+margin-inline: 6px;
+}

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { NextPage } from "next";
 import { DashboardHome } from "../../components/DashboardHome";
 import { Layout } from "../../layout";
+import {BASEURL} from '../../BasicUrl/Url'
+import { getCookie } from "cookies-next";
+const axios = require('axios')
 
 const Dashboard: NextPage = () => {
   const [page, setPage] = useState("detail");
@@ -14,6 +17,8 @@ const Dashboard: NextPage = () => {
 };
 
 export default Dashboard;
+
+
 
 {
   /* {page === "property" && <Property setPage={setPage} />} */
