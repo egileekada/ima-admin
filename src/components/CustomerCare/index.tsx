@@ -2,27 +2,45 @@ import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import {BASEURL} from '../../BasicUrl/Url'
 import { getCookie } from 'cookies-next'
+import { BankDetails } from '../BankDetails'
+import { ContactMessages } from '../ContactMessages'
+import { Pagination } from '../Pagination'
 const axios = require('axios')
 
 export default function Index() {
 
-    const [admins, setAdmins] = useState([])
+    const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(0)
+    const [usersMessages, setUsersMessages] = useState([])
+    const [messages, setMessages] = useState([])
 
     useEffect(() => {
         const getAllAdmins = async() => {
             const token = getCookie('token')
-            const adminResponse = await axios.get(`${BASEURL.URL}/users`, {
+            const adminResponse = await axios.get(`${BASEURL.URL}/messages`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(adminResponse.data)
+            setUsersMessages(adminResponse.data.data)
+            setMessages(adminResponse.data.data.messages)
+            setPageCount(adminResponse.data.data.count)
         }
         getAllAdmins()
-    })
+    },[])
+
+    console.log(usersMessages)
+    console.log(pageCount)
+
 
     const [tab, setTab] = React.useState(0)
     const [infoTab, setInfoTab] = React.useState(false)
+
+
+    const myMessages = messages?.map((item, index) => {
+        return <ContactMessages username={item.from.username} email={item.from.email} 
+        content={item.content} date={item.from.createdAt.slice(0,10)} id={`00${index+1}`}/>
+    })
 
     return (
         <div>
@@ -46,7 +64,7 @@ export default function Index() {
 
             {tab === 0 && ( 
                 <div className='w-[100%] my-4 overflow-x-auto' >
-                    <table style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
+                    <table style={{ fontFamily: "Montserrat", fontWeight: "600", width:'100%' }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}}  >
                             <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
                                 <td className='w-20  '>
@@ -70,41 +88,7 @@ export default function Index() {
                             </tr>
                         </thead>
                         <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white'>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td>
-                                <td className='bg-white w-36 mx-3'>
-                                    <div className="w-36 mt-6 mb-3" > 
-                                        <p>08045687980</p>
-                                        <p>viktor@gmail.com</p>
-                                        <p>27/08/2022:2pm</p>
-                                    </div>
-                                </td> 
-                                <td className='bg-white w-auto'>
-                                    <p className="w-auto mt-6 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem </p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <div className='flex items-center mt-6 text-[#0984D6] mb-3 ' >
-                                        <p className="">Close</p>
-                                        <div className=' w-2 h-2 rounded-full bg-[#FF333F] ml-2 ' />
-                                    </div>
-                                </td>    
-                            </tr>  
+                            {myMessages}
                         </tbody>
                     </table>
                 </div>
@@ -144,61 +128,12 @@ export default function Index() {
                             </tr>
                         </thead>
                         <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white'>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td>
-                                <td className='bg-white w-36 mx-3'>
-                                    <div className="w-36 mt-6 mb-3" > 
-                                        <p>08045687980</p>
-                                        <p>viktor@gmail.com</p>
-                                        <p>27/08/2022:2pm</p>
-                                    </div>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">N200,000</p>
-                                </td>  
-                                <td className='bg-white w-40 '>
-                                    <div className=" w-40 mt-6 mb-3" > 
-                                        <div className="flex items-center " > 
-                                            <button className=" " > 
-                                                <Image src="/images/file.png" width={15} height={15} alt='avatar'/>
-                                            </button>
-                                            <p className=" items-center flex text-sm ml-2 " >View Receipt</p>
-                                        </div>
-                                    </div>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">Wallet Top up</p>
-                                </td>     
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 text-[#EB3223] mb-3">Pending</p>
-                                </td>   
-                                <td className='bg-white mx-2 w-36'> 
-                                    <div className=" w-36 flex " >
-                                        <button style={{border: "1px solid #02B449"}} className=" text-[#02B449] p-1 border-[#02B449] w-16 text-sm rounded-2xl " >Approve</button>
-                                        <button style={{border: "1px solid #EB3223"}} className=" text-[#EB3223] p-1 border-[#EB3223]  w-16 text-sm rounded-2xl ml-1 " >Reject</button>
-                                    </div> 
-                                </td> 
-                            </tr>  
+                            <BankDetails/>
                         </tbody>
                     </table>
                 </div>
             )} 
+            <Pagination page={page} pageCount={pageCount} setPage={setPage} limit={{limit:5}} />
         </div>
     )
 } 

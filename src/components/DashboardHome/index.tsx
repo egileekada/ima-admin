@@ -51,7 +51,6 @@ const displayProperties = sixProperties?.map(property => {
     )
 })
 
-console.log(limit)
 
 
 
