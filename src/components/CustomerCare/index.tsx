@@ -1,7 +1,25 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
+import {BASEURL} from '../../BasicUrl/Url'
+import { getCookie } from 'cookies-next'
+const axios = require('axios')
 
 export default function Index() {
+
+    const [admins, setAdmins] = useState([])
+
+    useEffect(() => {
+        const getAllAdmins = async() => {
+            const token = getCookie('token')
+            const adminResponse = await axios.get(`${BASEURL.URL}/users`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(adminResponse.data)
+        }
+        getAllAdmins()
+    })
 
     const [tab, setTab] = React.useState(0)
     const [infoTab, setInfoTab] = React.useState(false)
