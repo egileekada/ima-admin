@@ -55,7 +55,7 @@ export default function Index() {
             </div>
             <div className='w-full mt-6 h-fit flex pb-6' >
                 <button onClick={()=> setTab(0)} style={tab === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p style={{fontFamily: "Montserrat", fontWeight: "700"}} >Contact us (10)</p>
+                    <p style={{fontFamily: "Montserrat", fontWeight: "700"}} >Contact us ({messages.length})</p>
                 </button>
                 <button onClick={()=> setTab(1)} style={tab === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p style={{fontFamily: "Montserrat", fontWeight: "700"}} >Bank Deposit (10)</p>
