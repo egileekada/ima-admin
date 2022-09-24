@@ -9,6 +9,7 @@ const axios = require('axios')
 
 
 export function MyBlogs(){
+    const [blogCount, setBlogCount] = useState(0)
     const [touchedBlog, setTouchedBlog] = useState(false)
     const [page, setPage] = useState(1)
     const [pageCount, setPageCount] = useState(0)
@@ -20,14 +21,13 @@ useEffect(() => {
         Authorization: `Bearer ${getCookie('token')}`
     }})
     setAllBlogs(allBlogsResponse.data.data.blog)
+    setBlogCount(allBlogsResponse.data.data.count)
     setPageCount(allBlogsResponse.data.data.pages)
  }
  getBlogs()
 
 }, [page, touchedBlog])
  
-
-
     const router = useRouter()
 
     const [currentPage, setCurrentPage] = useState('all')
@@ -55,7 +55,7 @@ useEffect(() => {
             <div className={styles.allPosts}>
                 <p style={currentPage=='all'?myStyle:{}} onClick={() => 
                     {setCurrentPage('all')
-                    router.push('/')}}>All Post (10)</p>
+                    router.push('/')}}>All Post ({blogCount})</p>
                 <p style={currentPage=='write'?myStyle:{}} onClick={() => {
                     setCurrentPage('write')
                     router.push('write-blog')}}>Write Post </p>

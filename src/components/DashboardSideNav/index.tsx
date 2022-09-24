@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
+import {FaUserAlt} from "react-icons/fa"
+
+
 
 export function DashboardSideNav({
-  children
+  children, user
 }: {
   [x: string]: any;
   page?: string;
@@ -25,21 +28,22 @@ export function DashboardSideNav({
     router.push(page);
   }, [page]);
 
+
   return (
     <div className={styles.mainWrapper}>
       <div>
         <div className={styles.avatarWrapper}>
-          <div className={styles.avatarBox}>
-            <Image
+          <div className={styles.avatarBox} style={{padding:'8px'}}>
+          {user?.avatar ? (<Image
               src="/images/profilePics.png"
               width={40}
               height={40}
               alt="avatar"
-            />
+            />) : <FaUserAlt style={{color:'white', width:'100%', height:'100%'}} />}
           </div>
           <div className={styles.title}>
-            <p>Samantha</p>
-            <p>johndoe@gmail.com</p>
+            <p>{user?.username}</p>
+            <p>{user?.email}</p>
           </div>
         </div>
         <p className={styles.mainMenu}>MAIN MENU</p>
