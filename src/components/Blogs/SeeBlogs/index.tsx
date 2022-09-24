@@ -24,7 +24,7 @@ export function SeeBlogs({title, body, addedBy, date, blogID, setTouchedBlog, to
         <div className={styles.mainWrapper}>
             <div onClick={()=> {
                 deletePost()
-                setTouchedBlog(prevState => !prevState)
+                setTouchedBlog((prevState: any) => !prevState)
             }}><Image src='/images/remove.png' width={11.67} height={15} alt='trash' style={{cursor:'pointer'}}/></div>
             <div className={styles.rightContainer} style={{alignItems:'center'}}>
             <div className={styles.imageSection}>
