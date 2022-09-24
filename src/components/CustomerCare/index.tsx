@@ -37,7 +37,7 @@ export default function Index() {
     const [infoTab, setInfoTab] = React.useState(false)
 
 
-    const myMessages = messages?.map((item, index) => {
+    const myMessages = messages?.map((item: any, index: any) => {
         return <ContactMessages username={item.from.username} email={item.from.email} 
         content={item.content} date={item.from.createdAt.slice(0,10)} id={`00${index+1}`}/>
     })
