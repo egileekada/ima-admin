@@ -128,7 +128,7 @@ export function DashboardSideNav({
             onClick={() => setPage("original")}
           >
             {page === "original" && (
-              <div className={styles.curve}>
+              <div className={styles.curve} style={{top:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -137,7 +137,7 @@ export function DashboardSideNav({
             </div>
             <p style={page === "original" ? color : {}}>Ima Original</p>
             {page === "original" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -158,7 +158,7 @@ export function DashboardSideNav({
             </div>
             <p style={page === "users" ? color : {}}>Users</p>
             {page === "users" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -324,7 +324,7 @@ export function DashboardSideNav({
             onClick={() => setPage("referral")}
           >
             {page === "referral" && (
-              <div className={styles.curve}>
+              <div className={styles.curve} style={{top:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -334,7 +334,7 @@ export function DashboardSideNav({
             </div>
             <p style={page === "referral" ? color : {}}>Referral</p>
             {page === "referral" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
