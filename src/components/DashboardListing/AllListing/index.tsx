@@ -4,13 +4,22 @@ import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useQuery } from '@tanstack/react-query';
 import { BASEURL } from '../../../BasicUrl/Url';
-import { getCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 import Image from 'next/image'
-import Router from 'next/router';
+import * as axios from 'axios'  
+import Router from 'next/router'; 
+import Modal from '../../modal';
+import { DeleteProperty } from '../../Modals/deleteProperty';
 
 export default function NewListing(){
+
+    const [loading, setLoading] = React.useState(false)
+    const [message, setMessage] = React.useState('');
+    const [showDelete, setshowDelete] = React.useState(false)
+    const [index, setIndex] = React.useState('');
+    const [modal, setModal] = React.useState(0);
  
-    const { isLoading, data } = useQuery(['properties'], () =>
+    const { isLoading, data, refetch } = useQuery(['properties'], () =>
     fetch(`${BASEURL.URL}/properties`, {
         method: 'GET', // or 'PUT'
         headers: {
@@ -19,11 +28,47 @@ export default function NewListing(){
         }
     }).then(res =>
         res.json()
-    )
-    )  
+    ))   
+    
+    
+    const submit = async (item: any, status: any) => {  
+            setLoading(true)
+            try { 
+        
+                const request: any = await axios.default.put(`${BASEURL.URL}/properties/property/${item}`, {status: status}, {
+                    headers: { 'content-type': 'application/json', 
+                    Authorization : `Bearer ${getCookie("token")}`
+                }})    
+                setMessage(request.data.status)
+                setModal(1)  
+                refetch()
+                const t1 = setTimeout(() => {
+                //   router.push("/dashboard");
+                    setModal(0)     
+                    setLoading(false)  
+                    clearTimeout(t1); 
+                }, 2000);  
+                console.log(request);
+                 
+                
+            } catch (error: any) {  
+                console.log(error.response.statusText);
+                
+                setMessage(error.response.statusText)
+                setModal(2)           
+                const t1 = setTimeout(() => {  
+                    setModal(0)     
+                    setLoading(false)  
+                    clearTimeout(t1);
+                }, 2000); 
+                return error
+            } 
+            setLoading(false) 
+    } 
 
     return(
         <div>  
+            <Modal message={message} modal={modal} />
             <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-4 overflow-x-scroll' >
                 <table className='text-xs bg-[#F7F8FA] '>
                 <thead style={{background: "#F7F8FA"}}  >
@@ -59,7 +104,7 @@ export default function NewListing(){
                             <>
                                 {data.data?.properties.map((item: any, index: any)=> {
                                     return( 
-                                        <tr className='font-Poppins-Semibold text-xs ' >
+                                        <tr key={index} className='font-Poppins-Semibold text-xs ' >
                                             {/* <td className='w-24 '>
                                                 <div className=" mt-6 mb-3 flex items-center" > 
                                                     <input type="checkbox" />
@@ -95,38 +140,37 @@ export default function NewListing(){
                                             </td> 
                                             <td  className='bg-white  w-48'>
                                                 <div className=' ml-4 ' > 
-                                                    {status === "" && 
+                                                    {item.status === "available" && 
                                                         <div className=" w-full flex " >
-                                                            <button style={{border: "1px solid #02B449"}} className=" text-[#02B449] p-1 border-[#02B449] w-24 text-sm rounded-2xl " >Approve</button>
-                                                            <button style={{border: "1px solid #EB3223"}} className=" text-[#EB3223] p-1 border-[#EB3223]  w-24 text-sm rounded-2xl ml-1 " >Reject</button>
+                                                            <button onClick={()=> submit(item._id, "approved")}  style={{border: "1px solid #02B449"}} className=" text-[#02B449] p-1 border-[#02B449] w-24 text-sm rounded-2xl " >Approve</button>
+                                                            <button onClick={()=> submit(item._id, "declined")} style={{border: "1px solid #EB3223"}} className=" text-[#EB3223] p-1 border-[#EB3223]  w-24 text-sm rounded-2xl ml-1 " >Reject</button>
                                                         </div> 
                                                     }
-                                                    {/* {status === "approve" && (
+                                                    {item.status === "approved" && (
                                                         <div className=" w-full flex items-center " >
                                                             <p className=" text-sm text-[#0984D6] " >Approved</p>
                                                             <button style={{border: "1px solid #C4CDD5"}} className=" text-[#C4CDD5] p-1 border-[#EB3223]  w-16 text-sm rounded-2xl ml-1 " >Reject</button>
                                                         </div>
                                                     )}
-                                                    {status === "reject" && (
+                                                    {item.status === "declined" && (
                                                         <div className=" w-full flex items-center " >
-                                                            <p style={{border: "1px solid #C4CDD5"}} className=" text-sm  rounded-2xl text-[#C4CDD5] p-1 border-[#EB3223]  w-16 " >Approved</p>
+                                                            <p style={{border: "1px solid #C4CDD5"}} className=" text-sm  rounded-2xl text-[#C4CDD5] p-1 border-[#EB3223]  w-24 " >Approved</p>
                                                             <p className=" text-[#EB3223] items-center flex text-sm ml-4 " >Rejected
                                                         
                                                             </p><button className=" ml-2 " > 
                                                                 <Image src="/images/file.png" width={15} height={15} alt='avatar'/>
                                                             </button>
                                                         </div>
-                                                    )}     */}
+                                                    )}    
                                                 </div>
                                             </td> 
                                             <td className='bg-white  w-28'> 
                                                 <div className=" text-[#0984D6] ml-4 flex w-full justify-start " > 
                                                     <button onClick={()=> {localStorage.setItem("propertyId", item._id), Router.push("/detail")}} className={styles.viewButton}>View</button>
-                                                    {/* {status !== '' && ( */}
-                                                        <button className="ml-5" > 
-                                                            <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                                        </button>
-                                                    {/* )} */}
+                                                    
+                                                    <button onClick={()=> [setshowDelete((prev) => !prev), setIndex(item._id)]} className="ml-5" > 
+                                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                                    </button> 
                                                 </div>
                                             </td>
                                         </tr>
@@ -137,6 +181,8 @@ export default function NewListing(){
                     </tbody>
                 </table>
             </div>
+            {showDelete &&  
+                <DeleteProperty show={true} handleDelete={setshowDelete} click={index}/>}
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>
                 <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex justify-center items-center ml-4 ' ><IoIosArrowBack size={15} /></button>

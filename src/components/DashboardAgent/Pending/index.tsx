@@ -2,12 +2,13 @@ import React from 'react'
 import { UserInfo } from './UserInfo'
 import styles from './index.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query';
 import { getCookie } from 'cookies-next';
 import { BASEURL } from '../../../BasicUrl/Url';
+import Image from 'next/image'
 
-export default function Index(props: any){
+
+export default function NewListing(props:any){ 
 
     const { isLoading, data } = useQuery(['Users'], () =>
         fetch(`${BASEURL.URL}/users`, {
@@ -25,7 +26,8 @@ export default function Index(props: any){
         <div> 
             <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-14 overflow-x-auto' >
                 <table className='text-xs bg-[#F7F8FA] '>
-                        <thead style={{background: "#F7F8FA"}}  >
+                        
+                <thead style={{background: "#F7F8FA"}}  >
                             <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
                             <td className='w-24 '>
                                 <div className="flex ml-4 w-24 items-center  " > 
@@ -44,28 +46,22 @@ export default function Index(props: any){
                             </td> 
                             <td className=''>
                                 <p className="w-28  ml-4">No. of Properties</p>
-                            </td> 
+                            </td>   
                             <td className=''>
-                                <p className="w-28  ml-4">Address</p>
-                            </td> 
-                            <td className=''>
-                                <p className="w-28">Date joined</p>
-                            </td> 
-                            <td className=''>
-                                <p className="w-28  ml-4">Last seen</p>
-                            </td> 
-                            <td className=''>
-                                <p className="w-28 ml-4">Status</p>
+                                <p className="w-28 ml-4">Submitted</p>
                             </td>  
                             <td className=''>
-                                <p className="w-28 flex justify-stat">Action</p>
+                                <p className="w-28 flex">Action</p>
+                            </td> 
+                            <td className=''>
+                                <p className="w-28 flex justify-stat"></p>
                             </td> 
                         </tr>
                     </thead>
                     <tbody> 
                         {!isLoading && ( 
                             <>
-                                {data.data?.users?.filter((item: any)=> item.isVerified)?.map((item: any, index: any)=> {
+                                {data.data?.users?.map((item: any, index: any)=> {
                                     return( 
                                         <tr key={index} className='font-Poppins-Semibold text-xs ' >
                                             <td className='w-24 bg-white'>
@@ -94,26 +90,20 @@ export default function Index(props: any){
                                             <td className='bg-white w-28 relative '>
                                                 <p className="mt-6 mb-3 text-center ml-4 ">0</p>
                                             </td>  
-                                            <td className='bg-white'>
-                                                <p className=" mt-6 mb-3 ml-4 w-28">{item?.location?.address+", "+item?.location?.city+", "+item?.location?.state}</p>
-                                            </td> 
                                             <td className='bg-white  w-28'>
-                                                <p className="mt-6 mb-3">{new Date(item?.createdAt).toUTCString()}</p>
-                                            </td> 
-                                            <td className='bg-white'>
-                                                <p className=" mt-6 mb-3 ml-4 w-28">{new Date(item?.lastSeen).toUTCString()}</p>
-                                            </td>    
-                                            <td className='bg-white'>
-                                                <p className="w-28 mt-6 mb-3 ml-4">{item?.status}</p>
-                                            </td> 
+                                                <p className="mt-6 mb-3 ml-4">{new Date(item?.updatedAt).toUTCString()}</p>
+                                            </td>  
                                             <td className='bg-white'> 
                                                 <div className=" flex mt-6 mb-3 w-full justify-start " > 
-                                                    <button onClick={()=> [props.click(true), localStorage.setItem("usertabIndex", item._id)]} className=" text-[#0984D6] " >View</button> 
+                                                    <button onClick={()=> [props.click(true), localStorage.setItem("usertabIndex", item._id)]} className=" text-[#0984D6] " >Verify</button> 
                                                     <button className="ml-5" > 
                                                         <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
                                                     </button> 
                                                 </div>
                                             </td> 
+                                            <td className='bg-white w-28 relative '>
+                                                <p className="mt-6 mb-3 text-[#EB3223] ml-4 ">New</p>
+                                            </td>  
                                         </tr>
                                     )
                                 })}
@@ -121,7 +111,7 @@ export default function Index(props: any){
                         )}
                     </tbody>
                 </table>
-            </div>
+            </div>  
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>
                 <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex justify-center items-center ml-4 ' ><IoIosArrowBack size={15} /></button>

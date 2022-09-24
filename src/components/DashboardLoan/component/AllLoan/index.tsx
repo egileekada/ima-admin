@@ -1,10 +1,26 @@
 import React from "react";
 import Image from 'next/image'
 import styles from '../../index.module.css'
+import { useQuery } from "@tanstack/react-query";
+import { getCookie } from "cookies-next";
+import { BASEURL } from "../../../../BasicUrl/Url";
 
 export default function Index(){
 
     let verified = true
+
+    const { isLoading, data } = useQuery(['loans'], () =>
+        fetch(`${BASEURL.URL}/loans`, {
+            method: 'GET', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json', 
+                Authorization : `Bearer ${getCookie("token")}`
+            }
+        }).then(res =>
+            res.json()
+    ))
+
+    console.log(data);
 
     return( 
         <div className=" w-full overflow-x-hidden medium " > 

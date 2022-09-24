@@ -1,11 +1,28 @@
 import React from 'react'
 import styles from './index.module.css' 
 import Image from 'next/image'
+import { useQuery } from '@tanstack/react-query'
+import { BASEURL } from '../../BasicUrl/Url'
+import { getCookie } from 'cookies-next'
 
 export default function Index() {
  
     const [tab, setTab] = React.useState(0) 
 
+
+    const { isLoading, data } = useQuery(['packages'], () =>
+        fetch(`${BASEURL.URL}/packages`, {
+            method: 'GET', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json', 
+                Authorization : `Bearer ${getCookie("token")}`
+            }
+        }).then(res =>
+            res.json()
+    ))
+
+    console.log(data);
+    
     return (
         <div>
             <div className=' w-full flex mt-14 '>
@@ -59,59 +76,63 @@ export default function Index() {
                                     <p className="w-28">Date</p>
                                 </td> 
                                 <td className=''>
-                                    <p className="w-28">Status</p>
-                                </td> 
-                                <td className=''>
                                     <p className="w-28">Ending In</p>
                                 </td> 
                                 <td className=''>
                                     <p className="w-28">Status</p>
                                 </td> 
+                                <td className=''>
+                                    <p className="w-28">Action</p>
+                                </td> 
                             </tr>
                         </thead>
-                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white '>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td>
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">Pro</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">30 days</p>
-                                </td>  
-                                <td className='bg-white w-28'>
-                                    <p className="mt-6 mb-3 mx-2">N5,000</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">27/08/2022 2:30pm</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">3 days</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <button className="" > 
-                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                    </button>
-                                </td> 
-                            </tr>  
+                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "600" }} className="text-xs" > 
+                             {data?.data?.packages?.map((item: any, index: any)=> {
+                                return(
+                                    <tr key={index} className='font-Poppins-Semibold text-sm ' >
+                                        <td className='w-20 bg-white '>
+                                            <div className="flex w-20 ml-4 items-center  " > 
+                                                <input type="checkbox" /> 
+                                                <p className="ml-2">{index+1}</p>
+                                            </div>
+                                        </td>
+                                        <td className='bg-white w-48 '>
+                                            <div className="mt-6 mb-3 flex items-center " > 
+                                                <div style={{marginRight:'5px', borderRadius:'999px'}}>
+                                                    <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
+                                                </div>
+                                                <div className=" ml-1 " >
+                                                    <p style={{fontSize:'12px'}}>Ima Original</p>
+                                                    <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
+                                                </div>
+                                            </div> 
+                                        </td>
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item?.name}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item.interval}</p>
+                                        </td>  
+                                        <td className='bg-white w-28'>
+                                            <p className="mt-6 mb-3 mx-2">{item?.amount !== "free" && ("N")}{(item?.amount)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{new Date(item.createdAt).toUTCString()}</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">3 days</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <button className="mt-6 mb-3" > 
+                                                <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                            </button>
+                                        </td> 
+                                    </tr> 
+                                )
+                             })}
                         </tbody>
                     </table>
                 </div>
@@ -119,10 +140,10 @@ export default function Index() {
             {tab === 1 && ( 
                 <div className='w-[100%] my-4 overflow-x-auto' >
                     <table  style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
-                        <thead style={{background: "#F7F8FA"}}  >
-                            <tr className='font-Poppins-Semibold h-14 bg-[#F7F8FA] ' >
-                                <td className='w-20 ml-4 '>
-                                    <div className="flex w-20 items-center  " > 
+                    <thead style={{background: "#F7F8FA"}}  >
+                            <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
+                                <td className='w-20 '>
+                                    <div className="flex w-20 ml-4 items-center  " > 
                                         <input type="checkbox" /> 
                                         <p className="ml-2">ID</p>
                                     </div>
@@ -143,59 +164,63 @@ export default function Index() {
                                     <p className="w-28">Date</p>
                                 </td> 
                                 <td className=''>
-                                    <p className="w-28">Status</p>
-                                </td> 
-                                <td className=''>
                                     <p className="w-28">Ending In</p>
                                 </td> 
                                 <td className=''>
                                     <p className="w-28">Status</p>
                                 </td> 
+                                <td className=''>
+                                    <p className="w-28">Action</p>
+                                </td> 
                             </tr>
                         </thead>
-                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white'>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td>
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">Pro</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">30 days</p>
-                                </td>  
-                                <td className='bg-white w-28'>
-                                    <p className="mt-6 mb-3 mx-2">N5,000</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">27/08/2022 2:30pm</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">3 days</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <button className="" > 
-                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                    </button>
-                                </td> 
-                            </tr>  
+                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "600" }} className="text-xs" > 
+                             {data?.data?.packages?.map((item: any, index: any)=> {
+                                return(
+                                    <tr key={index} className='font-Poppins-Semibold text-sm ' >
+                                        <td className='w-20 bg-white '>
+                                            <div className="flex w-20 ml-4 items-center  " > 
+                                                <input type="checkbox" /> 
+                                                <p className="ml-2">{index+1}</p>
+                                            </div>
+                                        </td>
+                                        <td className='bg-white w-48 '>
+                                            <div className="mt-6 mb-3 flex items-center " > 
+                                                <div style={{marginRight:'5px', borderRadius:'999px'}}>
+                                                    <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
+                                                </div>
+                                                <div className=" ml-1 " >
+                                                    <p style={{fontSize:'12px'}}>Ima Original</p>
+                                                    <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
+                                                </div>
+                                            </div> 
+                                        </td>
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item?.name}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item.interval}</p>
+                                        </td>  
+                                        <td className='bg-white w-28'>
+                                            <p className="mt-6 mb-3 mx-2">{item?.amount !== "free" && ("N")}{(item?.amount)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{new Date(item.createdAt).toUTCString()}</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">3 days</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <button className="mt-6 mb-3" > 
+                                                <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                            </button>
+                                        </td> 
+                                    </tr> 
+                                )
+                             })}
                         </tbody>
                     </table>
                 </div>
@@ -224,44 +249,48 @@ export default function Index() {
                                     <p className="w-28">Status</p>
                                 </td>  
                                 <td className=''>
-                                    <p className="w-28">Status</p>
+                                    <p className="w-28">Action</p>
                                 </td> 
                             </tr>
                         </thead>
-                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white'>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="mt-6 mb-3 mx-2">N5,000</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">27/08/2022 2:30pm</p>
-                                </td>     
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <button className="" > 
-                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                    </button>
-                                </td> 
-                            </tr>  
+                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "600" }} className="text-xs" > 
+                             {data?.data?.packages?.map((item: any, index: any)=> {
+                                return(
+                                    <tr key={index} className='font-Poppins-Semibold text-sm ' >
+                                        <td className='w-20 bg-white '>
+                                            <div className="flex w-20 ml-4 items-center  " > 
+                                                <input type="checkbox" /> 
+                                                <p className="ml-2">{index+1}</p>
+                                            </div>
+                                        </td>
+                                        <td className='bg-white w-48 '>
+                                            <div className="mt-6 mb-3 flex items-center " > 
+                                                <div style={{marginRight:'5px', borderRadius:'999px'}}>
+                                                    <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
+                                                </div>
+                                                <div className=" ml-1 " >
+                                                    <p style={{fontSize:'12px'}}>Ima Original</p>
+                                                    <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
+                                                </div>
+                                            </div> 
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="mt-6 mb-3 mx-2">{item?.amount !== "free" && ("N")}{(item?.amount)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{new Date(item.createdAt).toUTCString()}</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <button className="mt-6 mb-3" > 
+                                                <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                            </button>
+                                        </td> 
+                                    </tr> 
+                                )
+                             })}
                         </tbody>
                     </table>
                 </div>
@@ -270,9 +299,9 @@ export default function Index() {
                 <div className='w-[100%] my-4 overflow-x-auto' >
                     <table style={{ fontFamily: "Montserrat", fontWeight: "600" }} className='text-xs bg-[#F7F8FA] '>
                         <thead style={{background: "#F7F8FA"}}  >
-                            <tr className='font-Poppins-Semibold h-14 bg-[#F7F8FA] ' >
-                                <td className='w-20  '>
-                                    <div className="flex ml-4 w-20 items-center  " > 
+                            <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >
+                                <td className='w-20 '>
+                                    <div className="flex w-20 ml-4 items-center  " > 
                                         <input type="checkbox" /> 
                                         <p className="ml-2">ID</p>
                                     </div>
@@ -293,59 +322,63 @@ export default function Index() {
                                     <p className="w-28">Date</p>
                                 </td> 
                                 <td className=''>
-                                    <p className="w-28">Status</p>
-                                </td> 
-                                <td className=''>
                                     <p className="w-28">Ending In</p>
                                 </td> 
                                 <td className=''>
                                     <p className="w-28">Status</p>
                                 </td> 
+                                <td className=''>
+                                    <p className="w-28">Action</p>
+                                </td> 
                             </tr>
                         </thead>
-                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "400" }}> 
-                            <tr className='font-Poppins-Semibold text-sm ' >
-                                <td className='w-20 bg-white'>
-                                    <div className="flex w-20 ml-4 items-center  " > 
-                                        <input type="checkbox" /> 
-                                        <p className="ml-2">001</p>
-                                    </div>
-                                </td>
-                                <td className='bg-white w-48 '>
-                                    <div className="mt-6 mb-3 flex items-center " > 
-                                        <div style={{marginRight:'5px', borderRadius:'999px'}}>
-                                            <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
-                                        </div>
-                                        <div className=" ml-1 " >
-                                            <p style={{fontSize:'12px'}}>Ima Original</p>
-                                            <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
-                                        </div>
-                                    </div> 
-                                </td>
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">Pro</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">30 days</p>
-                                </td>  
-                                <td className='bg-white w-28'>
-                                    <p className="mt-6 mb-3 mx-2">N5,000</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">27/08/2022 2:30pm</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 mb-3">3 days</p>
-                                </td>   
-                                <td className='bg-white w-28'>
-                                    <p className="w-28 mt-6 text-[#EB3223] mb-3">Active</p>
-                                </td> 
-                                <td className='bg-white w-28'>
-                                    <button className="" > 
-                                        <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
-                                    </button>
-                                </td> 
-                            </tr>  
+                        <tbody style={{ fontFamily: "Montserrat", fontWeight: "600" }} className="text-xs" > 
+                             {data?.data?.packages?.map((item: any, index: any)=> {
+                                return(
+                                    <tr key={index} className='font-Poppins-Semibold text-sm ' >
+                                        <td className='w-20 bg-white '>
+                                            <div className="flex w-20 ml-4 items-center  " > 
+                                                <input type="checkbox" /> 
+                                                <p className="ml-2">{index+1}</p>
+                                            </div>
+                                        </td>
+                                        <td className='bg-white w-48 '>
+                                            <div className="mt-6 mb-3 flex items-center " > 
+                                                <div style={{marginRight:'5px', borderRadius:'999px'}}>
+                                                    <div><Image src="/images/profilePics.png" width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
+                                                </div>
+                                                <div className=" ml-1 " >
+                                                    <p style={{fontSize:'12px'}}>Ima Original</p>
+                                                    <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>@john</p>
+                                                </div>
+                                            </div> 
+                                        </td>
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item?.name}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{item.interval}</p>
+                                        </td>  
+                                        <td className='bg-white w-28'>
+                                            <p className="mt-6 mb-3 mx-2">{item?.amount !== "free" && ("N")}{(item?.amount)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">{new Date(item.createdAt).toUTCString()}</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 mb-3">3 days</p>
+                                        </td>   
+                                        <td className='bg-white w-28'>
+                                            <p className="w-28 mt-6 text-[#02B449] mb-3">Active</p>
+                                        </td> 
+                                        <td className='bg-white w-28'>
+                                            <button className="mt-6 mb-3" > 
+                                                <Image src="/images/trash.png" width={11.67} height={15} alt='avatar'/>
+                                            </button>
+                                        </td> 
+                                    </tr> 
+                                )
+                             })}
                         </tbody>
                     </table>
                 </div>

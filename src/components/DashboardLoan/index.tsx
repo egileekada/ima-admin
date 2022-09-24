@@ -8,7 +8,7 @@ import Approved from "./component/Approved";
 import Declined from "./component/Declined";
 import Disburst from "./component/Disburst";
 import Repayment from "./component/Repayment";
-import Overdue from "./component/Overdue";
+import Overdue from "./component/Overdue"; 
 
 export default function Index(){
  

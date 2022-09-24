@@ -65,7 +65,7 @@ export default function NewListing(){
                             <>
                                 {data.data?.properties?.map((item: any, index: any)=> {
                                     return( 
-                                        <tr className='font-Poppins-Semibold text-xs ' > 
+                                        <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>
                                                 <div className="mt-6 ml-4  mb-3 flex items-center " > 
                                                     <input type="checkbox" />
@@ -76,7 +76,7 @@ export default function NewListing(){
                                                     </div>
                                                     <div className=" ml-1 " >
                                                         <p style={{fontSize:'12px'}}>{item?.name}</p>
-                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>{(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                        <p  className="flex" style={{fontSize:'12px', color:'#90A0B7'}}>{(item?.price)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                                                     </div>
                                                 </div> 
                                             </td>

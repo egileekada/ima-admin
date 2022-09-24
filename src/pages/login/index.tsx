@@ -7,8 +7,8 @@ import React from "react"
 import styles from './index.module.css'
 import { BASEURL } from "../../BasicUrl/Url"; 
 import * as axios from 'axios'  
-import { getCookie } from "cookies-next";
-import Router from "next/router";
+import { getCookie, setCookie } from "cookies-next";
+import Router, { useRouter } from "next/router";
 import Modal from "../../components/modal"
 
 
@@ -19,18 +19,18 @@ const Login: NextPage = () => {
     const [loading, setLoading] = React.useState(false);   
 
     const loginSchema = yup.object({ 
-        username: yup.string().required('Required'),
+        email: yup.string().required('Required'),
         password: yup.string().required('Required') 
     }) 
 
     // formik
     const formik = useFormik({
-        initialValues: {username: '', password: ''},
+        initialValues: {email: '', password: ''},
         validationSchema: loginSchema,
         onSubmit: () => {},
-    }); 
+    });  
+    const router = useRouter(); 
     
-
     const submit = async () => { 
         if (!formik.dirty) { 
           setMessage('You have to fill in th form to continue')
@@ -52,20 +52,19 @@ const Login: NextPage = () => {
             setLoading(true)
             try { 
         
-                const request = await axios.default.post(`${BASEURL.URL}/auth/login`, formik.values, {
+                const request = await axios.default.post(`${BASEURL.URL}/auth/admin-login`, formik.values, {
                     headers: { 'content-type': 'application/json', 
-                }})   
-                console.log(request);
+                }})    
+                setCookie("token", request.data.data.token);
                     
-                setMessage('Loan On has been Processed submitted to the admin for approval')
+                setMessage(request.data.ststus)
                 setModal(1)  
-                const t1 = setTimeout(() => {    
-                        Router.push("/")  
+                const t1 = setTimeout(() => {
+                  router.push("/dashboard");
                     clearTimeout(t1); 
                 }, 2000);   
                 
-            } catch (error: any) { 
-                console.log(error.response.data.error.message);
+            } catch (error: any) {  
                 
                 setMessage(error.response.data.error.message)
                 setModal(2)           
@@ -98,16 +97,50 @@ const Login: NextPage = () => {
                     
                     <div className={styles.inputHolder} style={{marginTop: '50px'}}>
                         <label htmlFor='Email'>Email</label>
-                        <input type='text' placeholder='Enter your email' />
+                        <input
+                            name="email"
+                            onChange={formik.handleChange}
+                            onFocus={() =>
+                                formik.setFieldTouched("email", true, true)
+                            } type='text' placeholder='Enter your email' /> 
+                        <div className="w-full h-auto pt-2">
+                            {formik.touched.email && formik.errors.email && (
+                                <motion.p
+                                    initial={{ y: -50, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    className="text-xs font-Ubuntu-Medium text-[#ff0000]"
+                                >
+                                    {formik.errors.email}
+                                </motion.p>
+                            )}
+                        </div> 
                     </div>
 
                     <div className={styles.inputHolder} style={{marginTop: '24px'}}>
                         <label htmlFor='Email'>Password</label>
-                        <input type='password' placeholder='Enter your password' required />
+                        <input 
+                            name="password"
+                            onChange={formik.handleChange}
+                            onFocus={() =>
+                                formik.setFieldTouched("password", true, true)
+                            } 
+                            type="password" placeholder='Enter your password' required />
+                    
+                        <div className="w-full h-auto pt-2">
+                            {formik.touched.password && formik.errors.password && (
+                                <motion.p
+                                    initial={{ y: -50, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    className="text-xs font-Ubuntu-Medium text-[#ff0000]"
+                                >
+                                    {formik.errors.password}
+                                </motion.p>
+                            )}
+                        </div> 
                     </div>
 
                     <div className={styles.loginHolder}>
-                        <button onClick={()=> submit()} >Log in</button>
+                        <button onClick={()=> submit()} >{loading  ? "Loading..":"Log in"}</button>
                     </div>
                 </div>
             </div>

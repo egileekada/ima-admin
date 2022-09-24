@@ -1,29 +1,47 @@
 import React from "react";
 import Image from 'next/image'
+import { useQuery } from "@tanstack/react-query";
+import { getCookie } from "cookies-next";
+import { BASEURL } from "../../../BasicUrl/Url";
 
 export default function Index(){
 
     const [tab, setTab] = React.useState(0)
+
+    const { isLoading, data } = useQuery(['packages'+localStorage.getItem("usertabIndex")], () =>
+        fetch(`${BASEURL.URL}/users/${localStorage.getItem("usertabIndex")}`, {
+            method: 'GET', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json', 
+                Authorization : `Bearer ${getCookie("token")}`
+            }
+        }).then(res =>
+            res.json()
+    ))
+
+    console.log(data);
+    
+    
     return(
         <div>
             <div style={{border: "1px solid #D4D4D4", fontFamily: "Inter", fontWeight: "400" }} className=" w-full flex p-4 text-sm rounded-xl my-8 " >
                 <img src="/images/avatar.svg" className=" w-36 h-36 rounded-lg my-auto " alt="avatar" />
-                <div className=" ml-3 w-full border-r pr-3 " >
+                <div className=" ml-3 w-fit border-r pr-3 " >
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Full Name:</p>
-                        <p className="text-[#8388A2]" >Husen Seid</p>
+                        <p className="text-[#8388A2]" >{data?.data?.firstName+" "+data?.data?.lastName}</p>
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >User name:</p>
-                        <p className="text-[#8388A2]" >seaid23</p>
+                        <p className="text-[#8388A2]" >{data?.data?.username}</p>
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Phone:</p>
-                        <p className="text-[#8388A2]" >08075691234</p>
+                        <p className="text-[#8388A2]" >{data?.data?.phone}</p>
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Email</p>
-                        <p className="text-[#8388A2]" >husenseid@gmail.com</p>
+                        <p className="text-[#8388A2]" >{data?.data?.email}</p>
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Address:</p>
@@ -41,19 +59,24 @@ export default function Index(){
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Joined</p>
-                        <p className="text-[#8388A2]" >29/09/2022 2:30pm</p>
+                        <p className="text-[#8388A2]" >{new Date(data?.data?.createdAt).toUTCString()}</p>
                     </div>
                     <div className=" my-1 flex " >
                         <p className=" w-28 text-[#575C76] " >Status:</p>
                         <div className=" flex items-center " >
-                            <div className=" bg-[#00D68F] rounded-full " style={{  width: "10px", height: "10px"}} /> 
-                            <p className="text-[#8388A2] ml-3" >Online</p>
+                            {data?.data?.status === 'online' && (
+                                <div className=" bg-[#00D68F] rounded-full " style={{  width: "10px", height: "10px"}} />
+                            )} 
+                            {data?.data?.status !== 'online' && (
+                                <div className=" bg-[#ff0000] rounded-full " style={{  width: "10px", height: "10px"}} />
+                            )} 
+                            <p className="text-[#8388A2] ml-3" >{data?.data?.status}</p>
                         </div>
                     </div>
                 </div>
-                <div className=" pl-3 p-2  " > 
+                <div className=" pl-3 p-2 w-full " > 
                     <p className=" text-[#575C76] " >Bio</p>
-                    <p className=" text-[#575C76] mt-2 " >Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci temporibus officia natus accusamus consequuntur, error repellat blanditiis rerum.</p>
+                    <p className=" text-[#575C76] mt-2 " >{}</p>
                 </div>
             </div>
             <div className=' w-full grid grid-cols-6 py-7 ' > 
