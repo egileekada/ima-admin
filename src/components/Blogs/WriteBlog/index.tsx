@@ -9,7 +9,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const axios = require('axios')
 
 export function WriteBlog(){
-    const dropPhoto = useRef<HTMLInputElement>(null)
+    const dropPhoto: any = useRef<HTMLInputElement>(null)
     const [value, setValue] = useState('')
 
     const [blogData, setBlogData] = useState({title:'', image:'', data:''})
