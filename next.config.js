@@ -9,8 +9,7 @@ const nextConfig = {
   },
 }
 
-const withTM = require('next-transpile-modules')(['ky']);
-module.exports = withTM(nextConfig)
+module.exports = nextConfig
 
 
 
