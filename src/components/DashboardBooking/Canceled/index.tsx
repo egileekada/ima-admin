@@ -64,7 +64,7 @@ export default function NewListing(){
                         <>
                             {data.data?.bookings?.map((item: any, index: any)=> {
                                 return( 
-                                    <tr className='font-Poppins-Semibold text-xs ' > 
+                                    <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                         <td className='w-20 bg-white '>
                                             <div className=" ml-4 flex w-20 items-center  " > 
                                                 <input type="checkbox" />

@@ -66,7 +66,7 @@ export default function NewListing(props: any){
                             <>
                                 {data.data?.users?.filter((item: any)=> item.status !== 'online')?.map((item: any, index: any)=> {
                                     return( 
-                                        <tr className='font-Poppins-Semibold text-xs ' >
+                                        <tr key={index} className='font-Poppins-Semibold text-xs ' >
                                             <td className='w-24 bg-white'>
                                                 <div className=" mt-6 ml-4 mb-3 flex items-center" > 
                                                     <input type="checkbox" />

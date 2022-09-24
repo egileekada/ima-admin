@@ -64,7 +64,7 @@ export default function NewListing(){
                             <>
                                 {data.data?.properties?.filter((item: any) => item.type === "Buy")?.map((item: any, index: any)=> {
                                     return( 
-                                        <tr className='font-Poppins-Semibold text-xs ' > 
+                                        <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>
                                                 <div className="mt-6 ml-4  mb-3 flex items-center " > 
                                                     <input type="checkbox" />
