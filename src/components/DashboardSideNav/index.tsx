@@ -9,7 +9,7 @@ import {RiMoneyDollarCircleLine} from "react-icons/ri"
 import {AiFillBook} from "react-icons/ai"
 import {ImUsers} from "react-icons/im"
 import {RiNodeTree} from "react-icons/ri"
-import {MdDashboard} from "react-icons/md"
+import {MdDashboard, MdOutlineSettingsSuggest} from "react-icons/md"
 
 
 
@@ -303,12 +303,8 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <MdOutlineSettingsSuggest style={page === "settings" ? color : {color:'#fff', width:'18px', height:'18px'}} />
+
             </div>
             <p style={page === "settings" ? color : {}}>Settings</p>
             {page === "settings" && (
