@@ -108,7 +108,7 @@ const myStyle: object = {
             {position==='all' && <>
                 {!isLoading && (
                     <>
-                        {data.data.properties.map((item: any) => {
+                        {data?.data?.properties.map((item: any) => {
                             return( 
                                 <div  key={item._id} className={styles.myPropsHolder}>
                                     <MyProperties click={item._id} img={item?.imagesURLs[0]} description={item?.name} price={(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
@@ -126,7 +126,7 @@ const myStyle: object = {
             {position==='rent' && <>
                 {!isLoading && (
                     <>
-                        {data.data.properties.filter((item: any) => item?.type === "Rent").map((item: any) => {
+                        {data?.data?.properties.filter((item: any) => item?.type === "Rent").map((item: any) => {
                             return( 
                                 <div key={item._id} className={styles.myPropsHolder}>
                                     <MyProperties click={item._id}  img={item?.imagesURLs[0]} description={item?.name} price={(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
@@ -143,7 +143,7 @@ const myStyle: object = {
             {position==='buy' && <>
                 {!isLoading && (
                     <>
-                        {data.data.properties.filter((item: any) => item?.type === "Buy").map((item: any) => {
+                        {data?.data?.properties.filter((item: any) => item?.type === "Buy").map((item: any) => {
                             return( 
                                 <div key={item._id} className={styles.myPropsHolder}>
                                     <MyProperties click={item._id}  img={item?.imagesURLs[0]} description={item?.name} price={(item?.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
