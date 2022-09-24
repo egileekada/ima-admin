@@ -29,7 +29,7 @@ const myStyle: object = {
     borderBottom: '2px solid #0984D6'
 }
 
-
+let tabs = sessionStorage.getItem("propertiestabs")+""
 
     const { isLoading, data, refetch } = useQuery(['properties'], () =>
     fetch(`${BASEURL.URL}/properties`, {
@@ -49,8 +49,8 @@ const myStyle: object = {
     }
 
     React.useEffect(()=>{
-        if(sessionStorage.getItem("propertiestabs")){
-            setPosition(sessionStorage.getItem("propertiestabs")+"")
+        if(tabs){
+            setPosition(tabs)
         }
     },[position]) 
 
@@ -62,9 +62,9 @@ const myStyle: object = {
             </div>
 
             <div className={styles.differentContainers}>
-                <p style={sessionStorage.getItem("propertiestabs")+""==='all' ? myStyle: {} } onClick={() => ClickHandler('all')}>All Properties ({data.data?.properties?.length})</p>
-                <p style={sessionStorage.getItem("propertiestabs")+""==='rent' ? myStyle: {} } onClick={() => ClickHandler('rent')}>Rent ({data.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
-                <p style={sessionStorage.getItem("propertiestabs")+""==='buy' ? myStyle: {} } onClick={() => ClickHandler('buy')}>Buy ({data.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
+                <p style={tabs==='all' ? myStyle: {} } onClick={() => ClickHandler('all')}>All Properties ({data.data?.properties?.length})</p>
+                <p style={tabs==='rent' ? myStyle: {} } onClick={() => ClickHandler('rent')}>Rent ({data.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
+                <p style={tabs==='buy' ? myStyle: {} } onClick={() => ClickHandler('buy')}>Buy ({data.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
             </div>
 
             <ul className={styles.propertyList}>

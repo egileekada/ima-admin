@@ -8,9 +8,10 @@ import Router from "next/router";
 
 export function PropertyDetails() {
   
+  const Id = localStorage.getItem("propertyId")+""
 
-  const { isLoading, data } = useQuery(['propertiesdetails'+localStorage.getItem("propertyId")], () =>
-    fetch(`${BASEURL.URL}/properties/${localStorage.getItem("propertyId")}`, {
+  const { isLoading, data } = useQuery(['propertiesdetails'+Id], () =>
+    fetch(`${BASEURL.URL}/properties/${Id}`, {
         method: 'GET', // or 'PUT'
         headers: {
             'Content-Type': 'application/json', 

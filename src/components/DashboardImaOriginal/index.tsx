@@ -19,6 +19,8 @@ export default function Index(){
         setTab(item)
     }
 
+    let Index = sessionStorage.getItem("originalc")+""
+
     const { isLoading, data } = useQuery(['properties'], () =>
     fetch(`${BASEURL.URL}/properties`, {
         method: 'GET', // or 'PUT'
@@ -31,8 +33,8 @@ export default function Index(){
     )
     )  
     React.useEffect(()=>{
-        if(sessionStorage.getItem("original")){
-            setTab(Number(sessionStorage.getItem("original")+""))
+        if(Index){
+            setTab(Number(Index))
         }
     },[tab])
 
@@ -47,22 +49,22 @@ export default function Index(){
                 </div>
             </div>
             <div className='w-full mt-6 h-fit flex pb-6' >
-                <button onClick={()=> ClickHandler(0)} style={Number(sessionStorage.getItem("original")+"") === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(0)} style={Number(Index+"") === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >All Properties ({data.data?.properties?.length})</p>
                 </button>
-                <button onClick={()=> ClickHandler(1)} style={Number(sessionStorage.getItem("original")+"") === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(1)} style={Number(Index+"") === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >New ({data.data?.properties?.length})</p>
                 </button>
-                <button onClick={()=> ClickHandler(2)} style={Number(sessionStorage.getItem("original")+"") === 2 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 2 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(2)} style={Number(Index+"") === 2 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 2 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >Approved ({data.data?.properties?.filter((item: any)=> item.status === "approved")?.length})</p>
                 </button>
-                <button onClick={()=> ClickHandler(3)} style={Number(sessionStorage.getItem("original")+"") === 3 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 3 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(3)} style={Number(Index+"") === 3 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 3 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >Rejected ({data.data?.properties?.filter((item: any)=> item.status === "declined")?.length})</p>
                 </button> 
-                <button onClick={()=> ClickHandler(4)} style={Number(sessionStorage.getItem("original")+"") === 4 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 4 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(4)} style={Number(Index+"") === 4 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 4 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >Rent ({data.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
                 </button> 
-                <button onClick={()=> ClickHandler(5)} style={Number(sessionStorage.getItem("original")+"") === 5 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(sessionStorage.getItem("original")+"") == 5 ? ' w-40  ' : ' w-40 border-opacity-50'} >
+                <button onClick={()=> ClickHandler(5)} style={Number(Index+"") === 5 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={Number(Index+"") == 5 ? ' w-40  ' : ' w-40 border-opacity-50'} >
                     <p className={styles.MontserratSemiBold} >Buy ({data.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
                 </button> 
             </div>
