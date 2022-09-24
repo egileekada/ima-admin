@@ -9,7 +9,7 @@ const axios = require('axios')
 
 
 export function MyBlogs(){
-
+    const [touchedBlog, setTouchedBlog] = useState(false)
     const [page, setPage] = useState(1)
     const [pageCount, setPageCount] = useState(0)
     const [allBlogs, setAllBlogs] = useState([])
@@ -24,10 +24,9 @@ useEffect(() => {
  }
  getBlogs()
 
-}, [page])
+}, [page, touchedBlog])
  
-console.log(allBlogs)
-console.log(pageCount)
+
 
     const router = useRouter()
 
@@ -40,7 +39,8 @@ console.log(pageCount)
 
     const myBlogs = allBlogs.map(blog => {
         return <SeeBlogs key={blog._id} title={blog.title} body={blog.body} 
-        addedBy={blog.addedBy.username} date={blog.createdAt}/>
+        addedBy={blog.addedBy.username} date={blog.createdAt} blogID={blog._id}
+        setTouchedBlog={setTouchedBlog} touchedBlog={touchedBlog}/>
     })
 
 
@@ -64,7 +64,7 @@ console.log(pageCount)
             <div className={styles.availablePosts}>
                 {myBlogs}
             </div>
-            <Pagination page={page} setPage={setPage} pageCount={pageCount} />
+            <Pagination page={page} setPage={setPage} pageCount={pageCount} limit={{limit: 2}} />
         </div>
     )
 }

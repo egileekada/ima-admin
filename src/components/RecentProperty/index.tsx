@@ -5,6 +5,7 @@ import styles from './index.module.css'
 
 export function RecentProperty({img, description, location, action, price}:
     {img:string, description: string, location:string, action:string, price:string}){
+        
     return(
         <div className={styles.mainWrapper}>
             <div className={styles.leftContainer}>
