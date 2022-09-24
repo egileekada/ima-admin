@@ -1,0 +1,24 @@
+.paginationWrapper{
+    margin-top: 19px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.paginationWrapper > .navi {
+    border: 1px solid #EFF0F4;
+    color: #fff;
+    padding: 5px 12px;
+    font-family: Poppins;
+font-size: 12px;
+border-radius: 3px;
+margin-inline: 6px;
+}
+
+.paginationWrapper > p{
+    font-family: Poppins;
+font-size: 12px;
+font-weight: 500;
+color: #232638;
+margin-right: 13px;
+}
