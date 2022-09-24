@@ -8,10 +8,21 @@ import Router from "next/router";
 
 export function PropertyDetails() {
   
-  const Id = localStorage.getItem("propertyId")+""
+  // const Id = localStorage.getItem("propertyId")+""
 
-  const { isLoading, data } = useQuery(['propertiesdetails'+Id], () =>
-    fetch(`${BASEURL.URL}/properties/${Id}`, {
+  const [index, setIndex] = React.useState("")
+
+
+  React.useEffect(()=>{
+      if(localStorage.getItem("propertyId")){
+        setIndex(localStorage.getItem("propertyId")+"")
+      } else {
+          localStorage.setItem("propertyId", "0")
+      }
+  },[index])
+
+  const { isLoading, data } = useQuery(['propertiesdetails'+index], () =>
+    fetch(`${BASEURL.URL}/properties/${index}`, {
         method: 'GET', // or 'PUT'
         headers: {
             'Content-Type': 'application/json', 

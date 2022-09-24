@@ -24,12 +24,13 @@ const handleDelete = () => {
 
 
 
+const [tab, setTab] = React.useState("")
 const myStyle: object = {
     color: '#0984D6',
     borderBottom: '2px solid #0984D6'
 }
 
-let tabs = sessionStorage.getItem("propertiestabs")+""
+// let tabs = sessionStorage.getItem("propertiestabs")+""
 
     const { isLoading, data, refetch } = useQuery(['properties'], () =>
     fetch(`${BASEURL.URL}/properties`, {
@@ -45,14 +46,16 @@ let tabs = sessionStorage.getItem("propertiestabs")+""
 
     const ClickHandler =(item: any)=> { 
         sessionStorage.setItem("propertiestabs", item)
-        setPosition(item)
+        setTab(item)
     }
 
     React.useEffect(()=>{
-        if(tabs){
-            setPosition(tabs)
+        if(sessionStorage.getItem("propertiestabs")){
+            setTab(sessionStorage.getItem("propertiestabs")+"")
+        } else {
+            sessionStorage.setItem("propertiestabs", "0")
         }
-    },[position]) 
+    },[tab])
 
     return(
         <div>
@@ -62,9 +65,9 @@ let tabs = sessionStorage.getItem("propertiestabs")+""
             </div>
 
             <div className={styles.differentContainers}>
-                <p style={tabs==='all' ? myStyle: {} } onClick={() => ClickHandler('all')}>All Properties ({data.data?.properties?.length})</p>
-                <p style={tabs==='rent' ? myStyle: {} } onClick={() => ClickHandler('rent')}>Rent ({data.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
-                <p style={tabs==='buy' ? myStyle: {} } onClick={() => ClickHandler('buy')}>Buy ({data.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
+                <p style={tab ==='all' ? myStyle: {} } onClick={() => ClickHandler('all')}>All Properties ({data.data?.properties?.length})</p>
+                <p style={tab ==='rent' ? myStyle: {} } onClick={() => ClickHandler('rent')}>Rent ({data.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
+                <p style={tab ==='buy' ? myStyle: {} } onClick={() => ClickHandler('buy')}>Buy ({data.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
             </div>
 
             <ul className={styles.propertyList}>
