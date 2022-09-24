@@ -37,7 +37,7 @@ useEffect(() => {
         color: '#0984D6'
     }
 
-    const myBlogs = allBlogs.map(blog => {
+    const myBlogs = allBlogs.map((blog: any )=> {
         return <SeeBlogs key={blog._id} title={blog.title} body={blog.body} 
         addedBy={blog.addedBy.username} date={blog.createdAt} blogID={blog._id}
         setTouchedBlog={setTouchedBlog} touchedBlog={touchedBlog}/>
