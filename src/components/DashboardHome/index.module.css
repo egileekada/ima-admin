@@ -16,6 +16,14 @@ font-size: 12px;
 font-weight: 400;
 }
 
+#responsiveContainer{
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    box-shadow: 0px 2px 5px rgba(38, 51, 77, 0.03);
+    border-radius: 10px;
+}
+
 
 .dashboardWrapper{
     display: grid;
