@@ -70,7 +70,7 @@ export function DashboardSideNav({
             </div>
             <p style={page === "dashboard" ? color : {}}>Dashboard</p>
             {page === "dashboard" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}

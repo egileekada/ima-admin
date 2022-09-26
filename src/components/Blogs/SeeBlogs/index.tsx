@@ -5,6 +5,8 @@ import Link from "next/link"
 import {BASEURL} from '../../../BasicUrl/Url'
 import { getCookie } from "cookies-next"
 const axios = require('axios')
+import {FaUserTie} from "react-icons/fa"
+import {AiTwotoneCalendar} from "react-icons/ai"
 
 
 export function SeeBlogs({title, body, addedBy, date, blogID, setTouchedBlog, touchedBlog}:{[x:string]:any}){
@@ -31,13 +33,13 @@ export function SeeBlogs({title, body, addedBy, date, blogID, setTouchedBlog, to
                 <div className={styles.blogImageWrapper}><Image src='/images/blogImage.png' width={250} height={249} alt='blog-cover'/></div>
                 <div className={styles.blogBottom}>
                     <div className={styles.adminSide}>
-                        <Image src='/images/Manager.png' width={13} height={14} alt='user'/>
+                        <FaUserTie width={13} height={14} style={{color:'red'}}/>
                         <p>{addedBy}</p>
                     </div>
                     <p>{title}</p>
                     <hr/>
                     <div className={styles.dateSide} style={{marginBlock:'10px'}}>
-                        <Image src='/images/Calendar.png' width={12} height={12} alt='calendar'/>
+                        <AiTwotoneCalendar width={12} height={12} style={{color:'red'}}/>
                         <p>{date.slice(0,10)}</p>
                     </div>
                 </div>
