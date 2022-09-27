@@ -2,9 +2,19 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
+import {FaUserAlt, FaUserClock, FaUsers, FaUserNinja} from "react-icons/fa"
+import {BsHouseFill} from "react-icons/bs"
+import {BiWallet, BiMessageDots} from "react-icons/bi"
+import {RiMoneyDollarCircleLine} from "react-icons/ri"
+import {AiFillBook} from "react-icons/ai"
+import {ImUsers} from "react-icons/im"
+import {RiNodeTree} from "react-icons/ri"
+import {MdDashboard, MdOutlineSettingsSuggest} from "react-icons/md"
+
+
 
 export function DashboardSideNav({
-  children
+  children, user
 }: {
   [x: string]: any;
   page?: string;
@@ -18,28 +28,28 @@ export function DashboardSideNav({
     color: "#0984D6"
   };
   const router = useRouter();
-  console.log(router.asPath);
   const [page, setPage] = useState(router.asPath.substr(1));
 
   useEffect(() => {
     router.push(page);
   }, [page]);
 
+
   return (
     <div className={styles.mainWrapper}>
       <div>
         <div className={styles.avatarWrapper}>
-          <div className={styles.avatarBox}>
-            <Image
+          <div className={styles.avatarBox} style={{padding:'8px'}}>
+          {user?.avatar ? (<Image
               src="/images/profilePics.png"
               width={40}
               height={40}
               alt="avatar"
-            />
+            />) : <FaUserAlt style={{color:'white', width:'100%', height:'100%'}} />}
           </div>
           <div className={styles.title}>
-            <p>Samantha</p>
-            <p>johndoe@gmail.com</p>
+            <p>{user?.username}</p>
+            <p>{user?.email}</p>
           </div>
         </div>
         <p className={styles.mainMenu}>MAIN MENU</p>
@@ -56,16 +66,11 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <MdDashboard style={page === "dashboard" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "dashboard" ? color : {}}>Dashboard</p>
             {page === "dashboard" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -84,12 +89,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+              <BsHouseFill style={page === "property" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "property" ? color : {}}>
               Property
@@ -112,12 +112,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <FaUserClock style={page === "listing" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "listing" ? color : {}}>Listing</p>
             {page === "listing" && (
@@ -133,21 +128,16 @@ export function DashboardSideNav({
             onClick={() => setPage("original")}
           >
             {page === "original" && (
-              <div className={styles.curve}>
+              <div className={styles.curve} style={{top:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <FaUserAlt style={page === "original" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "original" ? color : {}}>Ima Original</p>
             {page === "original" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -164,16 +154,11 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <FaUsers style={page === "users" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "users" ? color : {}}>Users</p>
             {page === "users" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -190,12 +175,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <FaUsers style={page === "agents" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "agents" ? color : {}}>Agents</p>
             {page === "agents" && (
@@ -216,12 +196,8 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <BiWallet style={page === "wallet" ? color : {color:'#fff', width:'18px', height:'18px'}} />
+
             </div>
             <p style={page === "wallet" ? color : {}}>Wallet</p>
             {page === "wallet" && (
@@ -242,12 +218,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <RiMoneyDollarCircleLine style={page === "loan" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "loan" ? color : {}}>Loan</p>
             {page === "loan" && (
@@ -268,40 +239,9 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <AiFillBook style={page === "bookings" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "bookings" ? color : {}}>Bookings</p>
-            {page === "bookings" && (
-              <div className={styles.curve2}>
-                <Image src="/images/roundTop.png" width={25} height={25} />
-              </div>
-            )}
-          </li>
-
-          <li
-            className={styles.dashboardList}
-            style={page === "packages" ? backgroundStyle : {}}
-            onClick={() => setPage("packages")}
-          >
-            {page === "packages" && (
-              <div className={styles.curve}>
-                <Image src="/images/roundTop.png" width={25} height={25} />
-              </div>
-            )}
-            <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
-            </div>
-            <p style={page === "packages" ? color : {}}>Packages</p>
             {page === "bookings" && (
               <div className={styles.curve2}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
@@ -320,12 +260,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <BiMessageDots style={page === "messages" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "messages" ? color : {}}>Messages</p>
             {page === "messages" && (
@@ -346,12 +281,8 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <ImUsers style={page === "blog" ? color : {color:'#fff', width:'18px', height:'18px'}} />
+
             </div>
             {page === "blog" && (
               <div className={styles.curve2}>
@@ -372,12 +303,8 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <MdOutlineSettingsSuggest style={page === "settings" ? color : {color:'#fff', width:'18px', height:'18px'}} />
+
             </div>
             <p style={page === "settings" ? color : {}}>Settings</p>
             {page === "settings" && (
@@ -393,21 +320,17 @@ export function DashboardSideNav({
             onClick={() => setPage("referral")}
           >
             {page === "referral" && (
-              <div className={styles.curve}>
+              <div className={styles.curve} style={{top:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <RiNodeTree style={page === "referral" ? color : {color:'#fff', width:'18px', height:'18px'}} />
+
             </div>
             <p style={page === "referral" ? color : {}}>Referral</p>
             {page === "referral" && (
-              <div className={styles.curve2}>
+              <div className={styles.curve2} style={{bottom:'-56%'}}>
                 <Image src="/images/roundTop.png" width={25} height={25} />
               </div>
             )}
@@ -424,12 +347,7 @@ export function DashboardSideNav({
               </div>
             )}
             <div>
-              <Image
-                src="/images/dashboard.png"
-                width={15}
-                height={15}
-                alt="icon"
-              />
+            <FaUserNinja style={page === "referral" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "customer" ? color : {}}>Customer Care</p>
             {/* {page==='customer'&&<div className={styles.curve2}><Image src='/images/roundTop.png' width={25} height={25}/></div>} */}

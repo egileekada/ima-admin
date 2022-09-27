@@ -5,10 +5,11 @@ import { FileCount } from "../FileCount"
 import { RecentProperty } from "../RecentProperty"
 import {BASEURL} from '../../BasicUrl/Url'
 import { getCookie } from "cookies-next";
-import { UserInfo } from "../UserInfo"
+// import {LineChart,Line,CartesianGrid,XAxis,YAxis,Tooltip,Legend, ResponsiveContainer} from "recharts"
 import axios from "axios"
 import {LineChart,Line,CartesianGrid,XAxis,YAxis,Tooltip,Legend, ResponsiveContainer} from "recharts"
 import { Pagination } from "../Pagination"
+import { UserInfo } from "../UserInfo"
 
 
 export function DashboardHome(){
@@ -81,41 +82,24 @@ export function DashboardHome(){
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
-                    <div className={styles.dashboardContainer}>
-                    <div className={styles.arrow}><Image src='/images/arrowRight.png' width={6} height={10} alt='arrow-right' /></div>
-                        <p>Recent Property</p>
-                        <div className={styles.myRecentHolder}>
-                            {displayProperties}
-                        </div>
-                    </div>
-                    <div className={styles.homeBottom}>
-                        <ul className={styles.bottomHeading}>
-                            <li style={{display:'flex', alignItems:'center', marginRight:'100px'}}>
-                                <input type='checkbox' style={{marginRight:'10px'}}></input>
-                                <p style={{display:'inline'}}>User</p>
-                            </li>
-                            
-                            <li>
-                                <p>Email</p>
-                            </li>
-    
-                            <li>
-                                <p>Joined</p>
-                            </li>
-    
-                            <li>
-                                <p>Location</p>
-                            </li>
-    
-                            <li>
-                                <p>Status</p>
-                            </li>
-    
-                            <li>
-                                <p>Action</p>
-                            </li>
-                        </ul>
-                        {displayUsers}
+                    {/* <ResponsiveContainer width={'100%'} height="70%" >
+                    <LineChart width={730} height={250} data={[{date:"67",value:1200,value2:788},{date:"2",value:900, value2:388},{date:"12",value:200, value2:269},{date:"178",value:600, value2:480}]}
+                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                        <Line type="monotone" dataKey="value2" stroke="#82ca9d" />
+                        </LineChart>
+                    </ResponsiveContainer> */}
+                </div>
+                <div className={styles.dashboardContainer}>
+                <div className={styles.arrow}><Image src='/images/arrowRight.png' width={6} height={10} alt='arrow-right' /></div>
+                    <p>Recent Property</p>
+                    <div className={styles.myRecentHolder}>
+                        {displayProperties}
                     </div>
                 </div>
                         <Pagination page={page} setPage={setPage} pageCount={pageCount} limit={limit} />
