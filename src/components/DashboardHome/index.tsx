@@ -6,7 +6,7 @@ import { RecentProperty } from "../RecentProperty"
 import { UserInfo } from "../UserInfo"
 import {BASEURL} from '../../BasicUrl/Url'
 import { getCookie } from "cookies-next";
-import {IoIosArrowForward} from "react-icons/io"
+import {IoIosArrowForward, IoIosLogOut} from "react-icons/io"
 import {BarChart, Bar, CartesianGrid, XAxis, YAxis,Tooltip,Legend,  Cell, ResponsiveContainer} from "recharts"
 import axios from "axios"
 import { Pagination } from "../Pagination"
@@ -133,9 +133,6 @@ const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
                     </div>
                 </div>
                 <div className={styles.dashboardContainer}>
-                { proper < 2 && <div className={styles.arrow}><IoIosArrowForward
-                width={6} height={10}  style={proper<2 ? {cursor:'pointer'}: {color:'lightgray', cursor:'not-allowed'}}
-                onClick={()=> setProper(prevVal => prevVal+1)}/></div>}
                     <p>Recent Property</p>
                     <div className={styles.myRecentHolder}>
                         {displayProperties}
