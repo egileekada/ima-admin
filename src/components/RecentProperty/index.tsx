@@ -20,7 +20,7 @@ export function RecentProperty({img, description, location, action, price}:
                 <p className={action==='Rent'?styles.action1 : styles.action2}
                 style={{fontWeight:400}}>{action}</p>
                 <div className={styles.divLine}></div>
-                <p style={{fontSize:20, color:'#2E3A59'}}>{price}</p>
+                <p style={{fontSize:'13px', color:'#2E3A59'}}>{price}</p>
             </div>
         </div>
     )

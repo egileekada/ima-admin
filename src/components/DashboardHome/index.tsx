@@ -55,8 +55,11 @@ const displayProperties = allProperties?.map(property => {
 const chartData = [{name:"Properties",value:1200},{name:"Ima Original",value:900},
 {name:"Buy",value:200},{name:"Rent",value:600}]
 
-const barColors = ["#FF6633", "#3361FF", "#8833FF", "#0984D6"]
+const chartData2 = [{name:"Users",value:300},{name:"Agents",value:900},
+{name:"Visitors",value:900}]
 
+const barColors = ["#FF6633", "#3361FF", "#8833FF", "#0984D6"]
+const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
 
     return(
         <div>
@@ -71,14 +74,22 @@ const barColors = ["#FF6633", "#3361FF", "#8833FF", "#0984D6"]
                         <FileCount img='/images/folder-open-orange.png' background="rgba(255, 149, 51, 0.2)" 
                         title="Customers" amount="5000" textColor='#FF9533'/>
                     </div>
-                    <ResponsiveContainer width={'100%'} height="40%" id={styles.responsiveContainer}>
+                    <div style={{height:'25%'}} className={styles.responsiveDiv}>
+                    <ul className={styles.usersList}>
+                                <li>Users</li>
+                                <li>Daily</li>
+                                <li>Weekly</li>
+                                <li>Monthly</li>
+                            </ul>
+                    <ResponsiveContainer width={'100%'} height="100%" id={styles.responsiveContainer}>
                     <BarChart width={730} height={250}
                     data={chartData}
                          layout='vertical' barCategoryGap={20}
-                         margin={{ top: 20, right: 20, left: 30, bottom: 5, }}> 
+                         margin={{ top: 10, right: 20, left: 30, }}> 
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="number" hide/>
-                        <YAxis type="category" dataKey='name'  />
+                        <YAxis type="category" dataKey='name' 
+                        style={{fontFamily:'Montserrat', fontWeight:'500', fontSize:'12px'}}/>
                         <Tooltip />
                         <Legend />
                         <Bar type="monotone" dataKey="value" fill="#FF6633">
@@ -90,6 +101,36 @@ const barColors = ["#FF6633", "#3361FF", "#8833FF", "#0984D6"]
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>
+                    </div>
+                    <div style={{height:'40%'}} className={styles.responsiveDiv}>
+                        <div style={{height:'20%',  marginTop:'100px'}}>
+                            <ul className={styles.usersList}>
+                                <li>Users</li>
+                                <li>Daily</li>
+                                <li>Weekly</li>
+                                <li>Monthly</li>
+                            </ul>
+                        </div>
+                    <ResponsiveContainer width={'100%'} height="80%" id={styles.responsiveContainer}>
+                    <BarChart width={730} height={250}
+                    data={chartData2}
+                         layout='vertical' barCategoryGap={37}
+                         margin={{ top: 10, right: 20, left: 30 }}> 
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis type="number" hide/>
+                        <YAxis type="category" dataKey='name' style={{fontFamily:'Montserrat', fontWeight:'500', fontSize:'12px'}} />
+                        <Tooltip />
+                        <Legend />
+                        <Bar type="monotone" dataKey="value" fill="#FF6633">
+                        {
+                        chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={barColors2[index % 20]} />
+                        ))
+                    }
+                            </Bar>
+                        </BarChart>
+                    </ResponsiveContainer>
+                    </div>
                 </div>
                 <div className={styles.dashboardContainer}>
                 { proper < 2 && <div className={styles.arrow}><IoIosArrowForward

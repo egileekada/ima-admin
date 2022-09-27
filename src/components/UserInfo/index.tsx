@@ -19,19 +19,19 @@ export function UserInfo({img, name, mobile, email, date, location, status}:
                 </div>
             </li>
 
-            <li>
-                <p>{email}</p>
+            <li className={styles.para}>
+                <p style={{fontWeight:'200'}}>{email}</p>
             </li>
 
-            <li>
-                <p style={{fontSize:'10px'}}>{date}</p>
+            <li className={styles.para}>
+                <p style={{fontSize:'10px', fontWeight:'200'}}>{date}</p>
             </li>
 
-            <li>
-                <p style={{fontSize:'10px'}}>{location}</p>
+            <li className={styles.para}>
+                <p style={{fontSize:'10px', fontWeight:'200'}}>{location}</p>
             </li>
 
-            <li>
+            <li className={styles.para}>
                 <p className={status==='Verified Agent' ? styles.verified1 : styles.verified2}>{status}</p>
             </li>
 

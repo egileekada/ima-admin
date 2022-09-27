@@ -4,8 +4,9 @@
 .mainWrapper{
     background-color: #0984D6;
     display: grid; 
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 6fr;
     padding: 21px;
+    padding-left: 12px;
     column-gap: 0;
 }
 
@@ -57,7 +58,7 @@ color: #fff;
 
 .dashboardUL{
     margin-top: 15px;
-    padding-left: 20px;
+    padding-left: 6px;
 }
 
 .dashboardList{
