@@ -20,7 +20,7 @@ export function UserInfo({img, name, mobile, email, date, location, status}:
             </li>
 
             <li className={styles.para}>
-                <p style={{fontWeight:'200'}}>{email}</p>
+                <p style={{fontWeight:'200', lineBreak:'anywhere'}}>{email}</p>
             </li>
 
             <li className={styles.para}>

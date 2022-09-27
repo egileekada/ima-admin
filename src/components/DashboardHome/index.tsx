@@ -74,7 +74,7 @@ const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
                         <FileCount img='/images/folder-open-orange.png' background="rgba(255, 149, 51, 0.2)" 
                         title="Customers" amount="5000" textColor='#FF9533'/>
                     </div>
-                    <div style={{height:'25%'}} className={styles.responsiveDiv}>
+                    <div style={{height:'30%'}} className={styles.responsiveDiv}>
                     <ul className={styles.usersList}>
                                 <li>Users</li>
                                 <li>Daily</li>
@@ -102,7 +102,7 @@ const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
                         </BarChart>
                     </ResponsiveContainer>
                     </div>
-                    <div style={{height:'40%'}} className={styles.responsiveDiv}>
+                    <div style={{height:'30%'}} className={styles.responsiveDiv}>
                         <div style={{height:'20%',  marginTop:'100px'}}>
                             <ul className={styles.usersList}>
                                 <li>Users</li>
@@ -114,7 +114,7 @@ const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
                     <ResponsiveContainer width={'100%'} height="80%" id={styles.responsiveContainer}>
                     <BarChart width={730} height={250}
                     data={chartData2}
-                         layout='vertical' barCategoryGap={37}
+                         layout='vertical' barCategoryGap={33}
                          margin={{ top: 10, right: 20, left: 30 }}> 
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="number" hide/>

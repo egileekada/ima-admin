@@ -8,11 +8,11 @@ export function RecentProperty({img, description, location, action, price}:
         
     return(
         <div className={styles.mainWrapper}>
+            <div style={{width:'35px', height:'35px'}}><Image src={img} width={'100%'} height={'100%'} alt='recent property' /></div>
             <div className={styles.leftContainer}>
-                <div style={{width:'48px', height:'48px'}}><Image src={img} width={'100%'} height={'100%'} alt='recent property' /></div>
                 <div>
                     <p style={{color:'#2E3A59'}}>{description}</p>
-                    <p style={{fontSize:'12px', fontWeight:400, color:'#8F9BB3'}}>{location}</p>
+                    <p style={{fontSize:'8px', fontWeight:400, color:'#8F9BB3'}}>{location}</p>
                 </div>
             </div>
 
