@@ -11,13 +11,12 @@ import {BarChart, Bar, CartesianGrid, XAxis, YAxis,Tooltip,Legend,  Cell, Respon
 import axios from "axios"
 import { Pagination } from "../Pagination"
 
-
 export function DashboardHome(){
     const [proper, setProper] = useState(1)
     const [page, setPage] = useState(1)
     const [pageCount, setPageCount] = useState(0)
-    const [allUsers, setAllUsers] = useState([])
-    const [allProperties, setAllProperties] = useState([])
+    const [allUsers, setAllUsers] = useState({})
+    const [allProperties, setAllProperties] = useState({})
 
 useEffect(() => {
  const getUsers = async () => {
@@ -27,24 +26,24 @@ useEffect(() => {
     const allPropertiesResponse = await axios.get(`${BASEURL.URL}/properties?limit=6&page=${proper}`, { headers: {
         Authorization: `Bearer ${getCookie('token')}`
     }})
-    setAllProperties(allPropertiesResponse.data.data.properties)
-    setAllUsers(allUsersResponse.data.data.users)
+    setAllProperties(allPropertiesResponse.data.data)
+    setAllUsers(allUsersResponse.data.data)
     setPageCount(allUsersResponse.data.data.pages)
  }
  getUsers()
 
 }, [page, proper])
 
-
-const displayUsers = allUsers.map(user => {
+const displayUsers = allUsers?.users?.map(user => {
     return ( <UserInfo key={user._id} img="/images/avatar.png" name={user.username} mobile="+998 (99) 436-46-15" 
     email={user.email} date={user.createdAt} location="2 New Road, Farm Road, PortHarcourt, Rivers State"
     status= {user.isVerified ? 'Verified Agent' : 'Not Verified'}/>)
 })
 
-const displayProperties = allProperties?.map(property => {
+
+const displayProperties = allProperties?.properties?.map(property => {
     return (
-        <RecentProperty key={property._id} img="/images/recentImage1.png" description={property.description}
+        <RecentProperty key={property._id} img={property.imagesURLs[0]} description={property.description}
         location={`${property.location.address}, ${property.location.city}, ${property.location.state}`} action={property.type} price={property.price}/>
     )
 })
@@ -66,11 +65,11 @@ const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
                     <p>Dashboard</p>
                     <div className={styles.fileCountHolder}>
                         <FileCount img='/images/folder-open-blue.png' background="rgba(51, 102, 255, 0.2)" 
-                        title="Total Property" amount="10,000"/>
+                        title="Total Property" amount={allProperties?.count}/>
                         <FileCount img='/images/folder-open.png' background="rgba(255, 51, 63, 0.2)" 
-                        title="Total Earnings" amount="N100,000" textColor='#FF333F'/>
+                        title="Total Earnings" amount="N100,000" textColor='#FF333F' count={allUsers?.count}/>
                         <FileCount img='/images/folder-open-orange.png' background="rgba(255, 149, 51, 0.2)" 
-                        title="Customers" amount="5000" textColor='#FF9533'/>
+                        title="Customers" amount={allUsers?.count} textColor='#FF9533'/>
                     </div>
                     <div style={{height:'30%'}} className={styles.responsiveDiv}>
                     <ul className={styles.usersList}>

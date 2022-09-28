@@ -1,5 +1,6 @@
 .fileCountWrapper{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
     align-items: center;
     column-gap: 12px;
     padding-block: 20px 9px;

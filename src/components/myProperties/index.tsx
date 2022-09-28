@@ -49,7 +49,7 @@ export function MyProperties({
                 columnGap: "8px"
               }}
             >
-              <div className=" w-12 ml-2 " >
+              <div className=" w-12 ml-2 ">
                 <img src={img} className='w-full h-12 object-cover' alt="property" />
               </div>
               <div>
