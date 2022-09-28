@@ -4,8 +4,8 @@
 .mainWrapper{
     background-color: #0984D6;
     display: grid; 
-    grid-template-columns: 1fr 4fr;
-    padding: 21px;
+    grid-template-columns: 1fr 6fr;
+    padding-left: 12px;
     column-gap: 0;
 }
 
@@ -13,8 +13,8 @@
     width: 100%;
     height: 100%;
     background-color: #fff;
-    border-radius: 30px;
 }
+
 
 .avatarWrapper{
     display: flex;
@@ -47,6 +47,10 @@ font-weight: 400;
 color: #fff;
 }
 
+.title > p{
+    padding-right: 10px;
+}
+
 .mainMenu{
     font-family: Poppins;
     font-size: 12px;
@@ -57,7 +61,7 @@ color: #fff;
 
 .dashboardUL{
     margin-top: 15px;
-    padding-left: 20px;
+    padding-left: 6px;
 }
 
 .dashboardList{

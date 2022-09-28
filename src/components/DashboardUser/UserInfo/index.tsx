@@ -18,8 +18,6 @@ export default function Index(){
         }).then(res =>
             res.json()
     ))
-
-    console.log(data);
     
     
     return(
