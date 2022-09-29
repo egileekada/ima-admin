@@ -18,6 +18,13 @@ font-size: 10px;
 font-weight: 300;
 }
 
+#propertyImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
 .leftContainer{
     display: flex;
     align-items: center;
