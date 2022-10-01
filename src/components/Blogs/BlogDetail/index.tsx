@@ -6,7 +6,7 @@ export function BlogDetail(){
     return(
         <div>
             <div style={{marginTop:'48px'}} className={styles.myProperty}>
-                <p>Blog <span style={{marginLeft:'50px', fontSize:'15px'}}>Read more</span></p>
+                <p>Blog <span style={{marginLeft:'51px', fontSize:'15px'}}>Read more</span></p>
                 <input type='text' placeholder='Search by name'></input>
             </div>
             <section>
