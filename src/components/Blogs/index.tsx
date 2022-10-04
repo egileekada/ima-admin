@@ -26,8 +26,12 @@ useEffect(() => {
  }
  getBlogs()
 
+ console.log(allBlogs)
+
+
 }, [page, touchedBlog])
  
+
     const router = useRouter()
 
     const [currentPage, setCurrentPage] = useState('all')

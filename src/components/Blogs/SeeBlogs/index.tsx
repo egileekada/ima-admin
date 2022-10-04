@@ -30,7 +30,7 @@ export function SeeBlogs({title, body, addedBy, date, blogID, setTouchedBlog, to
             }}><Image src='/images/remove.png' width={11.67} height={15} alt='trash' style={{cursor:'pointer'}}/></div>
             <div className={styles.rightContainer} style={{alignItems:'center'}}>
             <div className={styles.imageSection}>
-                <div className={styles.blogImageWrapper}><Image src='/images/blogImage.png' width={250} height={249} alt='blog-cover'/></div>
+                <div className={styles.blogImageWrapper}><Image src='/images/blogImage.png' width={280} height={249} alt='blog-cover'/></div>
                 <div className={styles.blogBottom}>
                     <div className={styles.adminSide}>
                         <FaUserTie width={13} height={14} style={{color:'red'}}/>

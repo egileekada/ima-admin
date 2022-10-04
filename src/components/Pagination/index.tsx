@@ -5,7 +5,6 @@ import { PageTabs } from "../PageTabs"
 
 export function Pagination({page, setPage, pageCount, limit}:{[x:string]:any}){
     const [activeTab, setActiveTab] = useState(page)
-
     return (
         <div className={styles.paginationWrapper}>
             <p>{`${((page-1) * limit?.limit) + 1} - ${page*limit?.limit} of items`}</p>

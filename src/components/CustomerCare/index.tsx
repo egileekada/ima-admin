@@ -29,9 +29,6 @@ export default function Index() {
         getAllAdmins()
     },[])
 
-    console.log(usersMessages)
-    console.log(pageCount)
-
 
     const [tab, setTab] = React.useState(0)
     const [infoTab, setInfoTab] = React.useState(false)

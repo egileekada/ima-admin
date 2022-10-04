@@ -25,8 +25,6 @@ export const Layout = function ({ children }: { [x: string]: any }) {
     getUser()
   },[])
 
-  console.log(user)
-
   return (
     <DashboardSideNav user={user}>
       <Navbar user={user} />

@@ -7,8 +7,8 @@ import React from "react"
 import styles from './index.module.css'
 import { BASEURL } from "../../BasicUrl/Url"; 
 import * as axios from 'axios'  
-import { getCookie, setCookie } from "cookies-next";
-import Router, { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import Modal from "../../components/modal"
 
 
@@ -30,6 +30,7 @@ const Login: NextPage = () => {
         onSubmit: () => {},
     });  
     const router = useRouter(); 
+
     
     const submit = async () => { 
         if (!formik.dirty) { 
