@@ -8,7 +8,9 @@ export function RecentProperty({img, description, location, action, price}:
         
     return(
         <div className={styles.mainWrapper}>
-            <div style={{width:'35px', height:'35px', borderRadius:'4px'}}><Image width={'100%'} height={'100%'} src={img} alt='recent property' id={styles.propertyImage}/></div>
+            <div style={{width:'35px', height:'35px', borderRadius:'4px'}}>
+                <img  className="w-full h-full"  src={img} alt='recent property' id={styles.propertyImage}/>
+                </div>
             <div className={styles.leftContainer}>
                 <div>
                     <p style={{color:'#2E3A59'}}>{description}</p>

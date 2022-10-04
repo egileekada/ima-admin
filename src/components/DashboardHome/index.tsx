@@ -43,7 +43,7 @@ const displayUsers = allUsers?.users?.map((user: any) => {
 
 const displayProperties = allProperties?.properties?.map((property: any) => {
     return (
-        <RecentProperty key={property._id} img={property.imagesURLs[0]} description={property.description}
+        <RecentProperty key={property._id} img={property?.imagesURLs[0]} description={property.description}
         location={`${property.location.address}, ${property.location.city}, ${property.location.state}`} action={property.type} price={property.price}/>
     )
 })
