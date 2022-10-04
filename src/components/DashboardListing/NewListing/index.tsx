@@ -10,6 +10,7 @@ import Router from 'next/router';
 import * as axios from 'axios'   
 import Modal from '../../modal';
 import { DeleteProperty } from '../../Modals/deleteProperty';
+import NextPage from '../../NextPage';
 import { ListItemAvatar } from '@mui/material';
 
 export default function NewListing(){
@@ -21,8 +22,10 @@ export default function NewListing(){
     const [index, setIndex] = React.useState('');
     const [modal, setModal] = React.useState(0);
 
+    const [page, setPage] = React.useState(1);
+
     const { isLoading, data, refetch } = useQuery(['properties'], () =>
-    fetch(`${BASEURL.URL}/properties`, {
+    fetch(`${BASEURL.URL}/properties?limit=6&page=${page}`, {
         method: 'GET', // or 'PUT'
         headers: {
             'Content-Type': 'application/json', 
@@ -31,9 +34,11 @@ export default function NewListing(){
     }).then(res =>
         res.json()
     )
-    )  
+    )   
+    let limit =  data?.data?.pages 
 
-    
+    console.log(limit);
+    console.log(data);
     const submit = async (item: any, status: any) => {  
         setLoading(true)
         try { 
@@ -105,7 +110,7 @@ export default function NewListing(){
                     <tbody> 
                         {!isLoading && ( 
                             <>
-                                {data?.data?.properties.map((item: any, index: any)=> {
+                                {data?.data?.properties?.slice(0,6).map((item: any, index: any)=> {
                                     return( 
                                         <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>
@@ -180,13 +185,7 @@ export default function NewListing(){
             </div>
             {showDelete &&  
                 <DeleteProperty show={true} handleDelete={setshowDelete} click={index}/>}
-            <div className=' w-full flex items-center mt-20 ' >
-                <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>
-                <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex justify-center items-center ml-4 ' ><IoIosArrowBack size={15} /></button>
-                <button className=' w-7 h-7 rounded bg-[#0984D6] text-white text-xs flex justify-center items-center ml-2 ' >1</button>
-                <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex text-xs justify-center items-center ml-2 ' >2</button>
-                <button className=' w-7 h-7 rounded border border-[#EFF0F4] flex justify-center items-center ml-4 ' ><IoIosArrowForward size={15} /></button>
-            </div>
+            <NextPage page={page} limit={limit} setPage={setPage} />
         </div>
     )
 }

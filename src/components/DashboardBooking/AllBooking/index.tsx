@@ -25,7 +25,7 @@ export default function NewListing(){
 
     return(
         <div> 
-        <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-4 overflow-x-auto' >
+        <div style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-4 overflow-x-auto' >
             <table className='text-xs bg-[#F7F8FA] '>
             <thead style={{background: "#F7F8FA"}}  >
                     <tr className='font-Poppins-Semibold h-14  bg-[#F7F8FA] ' >

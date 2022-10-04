@@ -147,6 +147,5 @@ const Login: NextPage = () => {
         </div>
     )
 }
-
-
+ 
 export default Login

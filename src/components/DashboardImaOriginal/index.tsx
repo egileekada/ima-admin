@@ -51,22 +51,22 @@ export default function Index(){
             </div>
             <div className='w-full mt-6 h-fit flex pb-6' >
                 <button onClick={()=> ClickHandler(0)} style={tab === 0 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 0 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >All Properties ({data?.data?.properties?.length})</p>
+                    <p className={styles.MontserratSemiBold} >All Properties ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.length})</p>
                 </button>
                 <button onClick={()=> ClickHandler(1)} style={tab === 1 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 1 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >New ({data?.data?.properties?.length})</p>
+                    <p className={styles.MontserratSemiBold} >New ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.length})</p>
                 </button>
                 <button onClick={()=> ClickHandler(2)} style={tab === 2 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 2 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Approved ({data?.data?.properties?.filter((item: any)=> item.status === "approved")?.length})</p>
+                    <p className={styles.MontserratSemiBold} >Approved ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.filter((item: any)=> item.status === "approved")?.length})</p>
                 </button>
                 <button onClick={()=> ClickHandler(3)} style={tab === 3 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 3 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Rejected ({data?.data?.properties?.filter((item: any)=> item.status === "declined")?.length})</p>
+                    <p className={styles.MontserratSemiBold} >Rejected ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.filter((item: any)=> item.imaOriginal )?.filter((item: any)=> item.status === "declined")?.length})</p>
                 </button> 
                 <button onClick={()=> ClickHandler(4)} style={tab === 4 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 4 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Rent ({data?.data?.properties?.filter((item: any) => item.type !== "Buy")?.length})</p>
+                    <p className={styles.MontserratSemiBold} >Rent ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.filter((item: any) => item.type !== "Buy")?.length})</p>
                 </button> 
                 <button onClick={()=> ClickHandler(5)} style={tab === 5 ? {borderBottom: "2px solid #0984D6 ", color: "#0984D6"}: {borderBottom: "2px solid #101010 "}} className={tab == 5 ? ' w-40  ' : ' w-40 border-opacity-50'} >
-                    <p className={styles.MontserratSemiBold} >Buy ({data?.data?.properties?.filter((item: any) => item.type === "Buy")?.length})</p>
+                    <p className={styles.MontserratSemiBold} >Buy ({data?.data?.properties?.filter((item: any)=> item.imaOriginal )?.filter((item: any) => item.type === "Buy")?.length})</p>
                 </button> 
             </div>
             {tab === 0 && (

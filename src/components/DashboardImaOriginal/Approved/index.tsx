@@ -63,7 +63,7 @@ export default function NewListing(){
                     <tbody> 
                         {!isLoading && ( 
                             <>
-                                {data.data?.properties?.filter((item: any)=> item.status === "approved")?.map((item: any, index: any)=> {
+                                {data.data?.properties?.filter((item: any)=> item.status === "approved")?.filter((item: any)=> item.imaOriginal )?.map((item: any, index: any)=> {
                                     return( 
                                         <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>

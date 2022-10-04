@@ -22,6 +22,9 @@ export default function NewListing(){
     )
     )  
 
+    console.log(data);
+    
+
     return(
         <div>  
             <div  style={{ fontFamily: "Montserrat", fontWeight: "600" }}  className='w-[100%] my-4 overflow-x-scroll' >
@@ -63,7 +66,7 @@ export default function NewListing(){
                     <tbody> 
                         {!isLoading && ( 
                             <>
-                                {data.data?.properties?.map((item: any, index: any)=> {
+                                {data.data?.properties?.filter((item: any)=> item.imaOriginal )?.map((item: any, index: any)=> {
                                     return( 
                                         <tr key={index} className='font-Poppins-Semibold text-xs ' > 
                                             <td className='bg-white w-48 '>
