@@ -3,7 +3,7 @@ import Image from "next/image"
 import styles from './index.module.css'
 import { IoIosLogOut} from "react-icons/io"
 
-export default function Index({user}:{user:object}){
+export default function Index({user}:{user: any}){
 
     const time = new Date().getHours()
 
