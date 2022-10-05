@@ -9,8 +9,8 @@ import { getCookie } from 'cookies-next';
 
 export default function NewListing(props: any){ 
 
-    const { isLoading, data } = useQuery(['Users'], () =>
-        fetch(`${BASEURL.URL}/users`, {
+    const { isLoading, data } = useQuery(['subadmin'], () =>
+        fetch(`${BASEURL.URL}/settings/get-subadmin`, {
             method: 'GET', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json', 
@@ -57,8 +57,18 @@ export default function NewListing(props: any){
                         <p>Action</p>
                     </li> 
                 </ul>
-                <UserInfo click={props} id="001" img="/images/profilePics.png" user="Amarachi Maryy" amount="N300,000" lasted="27/08/20222:30pm"
-                 date="27/08/20222:30pm"   /> 
+                {!isLoading && (
+                    <>
+                        {data?.data?.user?.map((item: any, index: any)=> {
+                            return(
+                                <div key={item._id} > 
+                                    <UserInfo click={props} id={index} img={item.avatar ? item.avatar: "/images/profilePics.png"} user={item?.firstName+" "+item?.lastName} amount="N300,000" lasted={new Date(item.lastSeen).toUTCString()}
+                                    date={new Date(item.createdAt).toUTCString()}   /> 
+                                </div>
+                            )
+                        })}
+                    </>
+                )}
             </div>
             <div className=' w-full flex items-center mt-20 ' >
                 <p style={{fontFamily: "Poppins", fontWeight: "500", fontSize: "12px"}} className=' ml-auto' >1-2 of items</p>

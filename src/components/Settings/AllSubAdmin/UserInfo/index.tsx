@@ -18,7 +18,7 @@ export function UserInfo({ click, id,img, user, amount, lasted, date}:
             <li style={{display:'flex', alignItems:'center'}}>
                 {/* <input type='checkbox' style={{marginRight:'10px'}}></input> */}
                 <div className={styles.avatar} style={{marginRight:'5px', borderRadius:'999px'}}>
-                    <div><Image src={img} width={48} height={48} alt='avatar' style={{borderRadius:'999px'}}/></div>
+                    <div className=" w-fit h-fit " ><img src={img} className="w-12 h-12" alt='avatar' style={{borderRadius:'999px'}}/></div>
                 </div>
                 <div className=" ml-1" >
                     <p style={{fontSize:'12px'}}>{user}</p>
