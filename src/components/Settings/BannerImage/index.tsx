@@ -154,7 +154,7 @@ export default function Index() {
                                 </>
                             )}
                         </div> 
-                        <button onClick={()=> submit()} className=' w-36 h-11 mt-12 text-white rounded-md bg-[#0984D6]  '  style={{fontFamily: "Montserrat", fontWeight: "700"}} >Publish</button>
+                        <button onClick={()=> submit()} className=' w-36 h-11 mt-12 text-white rounded-md bg-[#0984D6]  '  style={{fontFamily: "Montserrat", fontWeight: "700"}} >{loading ? 'loading..':'Delete'}</button>
                     </div>
                 }
                 {tab === 1 && 

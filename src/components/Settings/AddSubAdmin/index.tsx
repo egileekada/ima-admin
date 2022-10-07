@@ -3,6 +3,7 @@ import { BASEURL } from '../../../BasicUrl/Url'
 import * as axios from 'axios'   
 import { getCookie } from 'cookies-next'
 import Modal from '../../modal'
+import { HiEye, HiEyeOff} from "react-icons/hi";
 
 export default function Index() { 
      
@@ -10,6 +11,7 @@ export default function Index() {
     const [message, setMessage] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [passWord, setPassWord] = React.useState(''); 
+    const [showPassWord, setShowPassWord] = React.useState(false); 
     const [modal, setModal] = React.useState(0); 
     const submit = async ( ) => {  
         setLoading(true)
@@ -58,7 +60,15 @@ export default function Index() {
                 <p  style={{ fontFamily: "Montserrat", fontWeight: "400", color: "#000"}} className="" >Email Address</p>
                 <input onChange={(e)=> setEmail(e.target.value)} style={{ fontFamily: "Montserrat", fontWeight: "400", color: "#000"}} className=' w-full h-12 border px-6 mt-2 border-[#D4D4D4] rounded-md ' placeholder='Enter the email ' />
                 <p  style={{ fontFamily: "Montserrat", fontWeight: "400", color: "#000"}} className="mt-5" >Password</p>
-                <input onChange={(e)=> setPassWord(e.target.value)}  style={{ fontFamily: "Montserrat", fontWeight: "400", color: "#000"}} className=' w-full h-12 border px-6 mt-2 border-[#D4D4D4] rounded-md ' placeholder='Enter password ' />
+                <div className=' w-full relative mt-2 ' > 
+                    <input onChange={(e)=> setPassWord(e.target.value)} type={showPassWord ? "text": "password"}  style={{ fontFamily: "Montserrat", fontWeight: "400", color: "#000"}} className=' w-full h-12 border px-6 border-[#D4D4D4] rounded-md ' placeholder='Enter password ' />
+                    <button onClick={()=>  setShowPassWord((prev)=> !prev ) } className=' absolute right-0 px-3 top-0 h-full flex justify-center items-center ' > 
+                        {showPassWord ? 
+                        <HiEye size={25} />:
+                        <HiEyeOff size={25} />
+                        }
+                    </button>
+                </div>
                 <button onClick={submit}  style={{ fontFamily: "Montserrat", fontWeight: "700", color: "#fff"}}  className=' w-64 rounded-md bg-[#0984D6] text-white mt-8 mx-auto h-12 ' >{loading ? 'loading..':'Add Sub-Admin'}</button>
             </div>
         </div>

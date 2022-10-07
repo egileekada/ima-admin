@@ -5,8 +5,9 @@
     background-color: #0984D6;
     display: grid; 
     grid-template-columns: 1fr 6fr;
-    padding-left: 12px;
+    padding-left: 12px; 
     column-gap: 0;
+    height: 100vh;
 }
 
 .mainWrapper > div:last-child{

@@ -159,7 +159,7 @@ export function DashboardSideNav({
             <p style={page === "bookings" ? color : {}}>Bookings</p>
           </li>
 
-          <li
+          {/* <li
             className={styles.dashboardList}
             style={page === "messages" ? backgroundStyle : {}}
             onClick={() => setPage("messages")}
@@ -168,7 +168,7 @@ export function DashboardSideNav({
             <BiMessageDots style={page === "messages" ? color : {color:'#fff', width:'18px', height:'18px'}} />
             </div>
             <p style={page === "messages" ? color : {}}>Messages</p>
-          </li>
+          </li> */}
 
           <li
             className={styles.dashboardList}
