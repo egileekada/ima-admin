@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+
 import { NextPage } from "next";
-import DashboardListing from "../../components/DashboardListing";
 import { Layout } from "../../layout";
+import DashboardListing from "../../components/DashboardListing";
 
 const Index: NextPage = () => {
   return (
     <Layout>
-      <DashboardListing />;
+      <DashboardListing />
     </Layout>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
-import { DashboardHome } from "../../components/DashboardHome";
 import { Layout } from "../../layout";
+import { DashboardHome } from "../../components/DashboardHome";
 import {BASEURL} from '../../BasicUrl/Url'
 import { getCookie } from "cookies-next";
 const axios = require('axios')

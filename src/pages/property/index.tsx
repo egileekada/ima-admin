@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { NextPage } from "next";
 import { Property } from "../../components/Property";
 import { Layout } from "../../layout";
@@ -6,7 +5,7 @@ import { Layout } from "../../layout";
 const Index: NextPage = () => {
   return (
     <Layout>
-      <Property setPage={() => {}} />;
+      <Property setPage={() => {}} />
     </Layout>
   );
 };

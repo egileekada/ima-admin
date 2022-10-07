@@ -5,7 +5,7 @@ import DashboardImaOriginal from "../../components/DashboardImaOriginal";
 const Index: NextPage = () => {
   return ( 
     <Layout>
-      <DashboardImaOriginal />;
+      <DashboardImaOriginal />
     </Layout> 
   );
 };
