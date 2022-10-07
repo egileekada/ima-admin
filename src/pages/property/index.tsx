@@ -1,6 +1,6 @@
 import { NextPage } from "next";
-import { Property } from "../../components/Property";
 import { Layout } from "../../layout";
+import { Property } from "../../components/Property";
 
 const Index: NextPage = () => {
   return (
