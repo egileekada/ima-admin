@@ -36,7 +36,7 @@ export function DashboardSideNav({
 
 
   return (
-    <div className={styles.mainWrapper}>
+    <div  style={{ fontFamily: "Montserrat"}} className={styles.mainWrapper}>
       <div>
         <div className={styles.avatarWrapper}>
           <div className={styles.avatarBox} style={{padding:'8px'}}>

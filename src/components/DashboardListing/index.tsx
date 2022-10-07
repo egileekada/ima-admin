@@ -37,7 +37,7 @@ export default function Index(){
     },[tab])
 
     return(
-        <div>
+        <div style={{ fontFamily: "Montserrat"}} >
             <div className=' w-full flex mt-14 '>
                 <p className={styles.MontserratExtraBold} >Listing</p>
                 <div className='ml-auto' style={{width: '258px'}} >

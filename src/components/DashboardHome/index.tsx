@@ -59,7 +59,7 @@ const barColors = ["#FF6633", "#3361FF", "#8833FF", "#0984D6"]
 const barColors2 = ["#FF6633", "#3361FF", "#8833FF"]
 
     return(
-        <div>
+        <div style={{ fontFamily: "Montserrat"}}>
             <div className={styles.dashboardWrapper}>
                 <div className={styles.dashboardContainer}>
                     <p>Dashboard</p>

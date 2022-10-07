@@ -58,7 +58,7 @@ const myStyle: object = {
     },[tab])
 
     return(
-        <div>
+        <div style={{ fontFamily: "Montserrat"}}>
             <div style={{marginTop:'48px'}} className={styles.myProperty}>
                 <p>Property</p>
                 <input type='text' placeholder='Search'></input>
